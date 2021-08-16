@@ -12,6 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.hgs.user.service.CheckSessionService;
+import com.hgs.user.service.JoinProcService;
+import com.hgs.user.service.JoinService;
+import com.hgs.user.service.LoginService;
+import com.hgs.user.service.Logout;
+import com.hgs.user.service.UService;
+import com.hgs.user.service.UpdateService;
+import com.yjw.board.service.BoardCreateService;
 import com.yjw.board.service.InterBoardService;
 
 /**
@@ -50,6 +58,7 @@ public class PatternServlet extends HttpServlet {
 		
 		// 확장자 패턴에서 주소 값을 가져와주는 역할
 		String uri = request.getRequestURI();
+		System.out.println("URI 패턴 : " + uri);
 		// 로직 실행 후에 넘어갈 경로 지정 역할
 		String ui = null;
 		
@@ -59,38 +68,95 @@ public class PatternServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
+// ---------------------------------------------------------------------
 		
-		if(uri.equals("/ccs/boardCreate.do")) {
-			
-			System.out.println("글쓰기 페이지으로 이동합니다.");
+		UService uService = null;
+		String url = "";
 		
-		} else if(uri.equals("/ccs/boardSelect.do")) {
+		// 로그인
+			if(uri.equals("/ccs/login_proc.do")) {
+				uService = new LoginService();
+				uService.execute(request, response);
+				url = "main.jsp";
+			} 
+			// 로그아웃
+			else if (uri.equals("/ccs/logout.do")) {
+				uService = new Logout();
+				uService.execute(request, response);
+				url = "login.jsp";
+			}
+			// 회원가입 창
+			else if (uri.equals("/ccs/join.do")) {
+				uService = new JoinService();
+				uService.execute(request, response);
+				url = "join.jsp";
+			}
+			// 회원가입
+			else if (uri.equals("/ccs/join_proc.do")) {
+				uService = new JoinProcService();
+				uService.execute(request, response);
+				url = "login.jsp";
+			}
+			// 회원정보 창
+			else if (uri.equals("/ccs/userinfo.do")) {
+				uService = new CheckSessionService();
+				uService.execute(request, response);
+				url = "info.jsp";
+			}
+			// 회원정보 수정창
+			else if (uri.equals("/ccs/update.do")) {
+				uService = new CheckSessionService();
+				uService.execute(request, response);
+				url = "update.jsp";
+			}
+			// 회원정보 수정
+			else if (uri.equals("/ccs/update_proc.do")) {
+				uService = new UpdateService();
+				uService.execute(request, response);
+				url = "info.jsp";
+			}
+		
+// ---------------------------------------------------------------------
+		
+		// 게시판 글쓰기
+		else if(uri.equals("/ccs/boardCreate.do")) {
+			System.out.println("글쓰기 페이지로 이동합니다.");
+			ibs = new BoardCreateService();
+			ibs.execute(request, response);
+			ui = "/boardSelect.do";
+		} 
+		// 게시판 목록 조회
+		else if(uri.equals("/ccs/boardSelect.do")) {
 			
 			System.out.println("게시판 페이지로 이동합니다.");
-			
-		} else if(uri.equals("/ccs/boardDetail.do")) {
+		} 
+		// 게시판 글 조회
+		else if(uri.equals("/ccs/boardDetail.do")) {
 		
 			System.out.println("글 조회 페이지로 이동합니다.");
-			
-		} else if(uri.equals("/ccs/boardUpdate.do")) {
+		} 
+		// 게시판 수정 페이지 열기
+		else if(uri.equals("/ccs/boardUpdate.do")) {
 			
 			System.out.println("글 수정 페이지로 이동합니다.");
-			
-		} else if(uri.equals("/ccs/boardUpdateOK.do")) {
+		} 
+		// 게시판 수정 확인
+		else if(uri.equals("/ccs/boardUpdateOK.do")) {
 
-			
-		} else if(uri.equals("/ccs/boardDelete.do")) {
+		} 
+		// 게시판 삭제
+		else if(uri.equals("/ccs/boardDelete.do")) {
 			
 			System.out.println("글 삭제 페이지로 이동합니다.");
-			
-		} else {
+		} 
+		else {
 			out.print("잘못된 패턴입니다 ...");
 		}
 		
 		// 포워딩 로직
 		// 컨트롤러에서 출력에 필요한 데이터를 저장했다가 포워드로 jsp파일에 전달
-		RequestDispatcher dp = request.getRequestDispatcher(ui);
-		dp.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher(ui);
+		rd.forward(request, response);
 		
 	}
 }
