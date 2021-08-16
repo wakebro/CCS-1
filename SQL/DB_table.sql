@@ -47,3 +47,4 @@ INSERT INTO dept(d_name) VALUES('인사');
 INSERT INTO dept(d_name) VALUES('홍보마케팅');
 INSERT INTO dept(d_name) VALUES('기획');
 INSERT INTO dept(d_name) VALUES('디자인');
+INSERT INTO dept(d_name) VALUES('IT');
