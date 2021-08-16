@@ -1,3 +1,4 @@
+
 CREATE DATABASE ccs;
 
 USE ccs;
