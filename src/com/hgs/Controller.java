@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hgs.user.service.*;
+import com.hgs.board.service.*;
 
 @WebServlet("*.do")
 public class Controller extends HttpServlet {
@@ -37,6 +38,7 @@ public class Controller extends HttpServlet {
 		System.out.println("URI 패턴 : " + uri);
 		
 		UService uService = null;
+		IBoardService bService = null;
 		String url = "";
 		// 로그인
 		if(uri.equals("/ccs/login_proc.do")) {
@@ -80,7 +82,37 @@ public class Controller extends HttpServlet {
 			uService.execute(request, response);
 			url = "info.jsp";
 		}
+		// 메인화면
+		else if (uri.equals("/ccs/main.do")) {
+			uService = new MainPageService();
+			uService.execute(request, response);
+			url = "main.jsp";
+		}
+		// 게시판
+		else if (uri.contentEquals("/ccs/board.do")) {
+			bService = new BoardListService();
+			bService.execute(request, response);
+			url = "/board/board_list.jsp";
+		}
+		// 게시판 글 작성
+		else if (uri.contentEquals("/ccs/write.do")) {
+			url = "/board/board_write_form.jsp";
+		}
+		// 게시판 글 작성처리
+		else if (uri.contentEquals("/ccs/write_proc.do")) {
+			bService = new BoardWriteService();
+			bService.execute(request, response);
+			url = "/board/board_list.jsp";
+		}
+		// 게시판 글 자세히
+		else if (uri.contentEquals("/ccs/boarddetail.do")) {
+			System.out.println(1);
+			bService = new BoardDetailService();
+			bService.execute(request, response);
+			url = "/board/board_detail.jsp";
+		}
 		else {
+			
 			url = "login.jsp";
 		}
 		

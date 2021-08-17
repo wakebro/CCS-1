@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보</title>
+<title>게시판</title>
 </head>
 <body>
 	<h1>어서오세요, ${userInfo.name }님</h1>
@@ -22,32 +22,27 @@
 			</c:if>
 		</tr>
 	</table>
-	<br>
+	<h1>게시판 창</h1>
 	<table border="1">
 		<tr>
-			<th>이름</th>
-			<td>${userInfo.name }</td>
+			<td><a href="/ccs/write.do"><input type="button" value="글쓰기"></a>
 		</tr>
 		<tr>
-			<th>사번</th>
-			<td>${userInfo.no }</td>
+			<th>글번호</th>
+			<th>글제목</th>
+			<th>글쓴이</th>
+			<th>쓴날짜</th>
+			<th>조회수</th>
 		</tr>
+		<c:forEach var="list" items="${boardList }">
 		<tr>
-			<th>부서</th>
-			<td>${userDept }</td>
+			<td>${list.b_no }</td>
+			<td><a href="/ccs/boarddetail.do?b_no=${list.b_no}">${list.b_title}</a></td>
+			<td>${list.m_id }</td>
+			<td>${list.b_date }</td>
+			<td>${list.b_view }</td>
 		</tr>
-		<tr>
-			<th>전화번호</th>
-			<td>${userInfo.phone }</td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td>${userInfo.email }</td>
-		</tr>
-		<tr>
-			<td colspan="2" ><a href="/ccs/update.do"><input type="submit" value="회원정보 수정" style="width: 100%"></a>
-		</tr>
-		
+		</c:forEach>
 	</table>
 </body>
 </html>
