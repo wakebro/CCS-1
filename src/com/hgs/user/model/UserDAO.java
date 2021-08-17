@@ -194,7 +194,7 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next())
-				dept = rs.getString("m_name");
+				dept = rs.getString("d_name");
 		} catch (SQLException e) {
 			System.out.println("Error Code : " + e);
 		} finally {
