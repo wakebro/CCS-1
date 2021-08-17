@@ -13,6 +13,7 @@ public class JoinService implements UService{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		UserDAO dao = UserDAO.getInstace();
 		List<DeptVO> deptlist = dao.getDept();
+		System.out.println(deptlist);
 		request.setAttribute("deptlist", deptlist);
 	}
 }
