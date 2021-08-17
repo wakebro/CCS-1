@@ -140,7 +140,7 @@ public class UserDAO {
 		ResultSet rs = null;
 		
 		UserVO userInfo = new UserVO();
-		String sql = "SELECT * from member WHERE id=?";
+		String sql = "SELECT * from member WHERE m_id=?";
 		
 		try {
 			con = ds.getConnection();
@@ -149,7 +149,7 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(rs.getString("pw").equals(user.getPw())) {
+				if(rs.getString("m_pw").equals(user.getPw())) {
 					userInfo.setName(rs.getString("m_name"));
 					userInfo.setNo(rs.getInt("m_no"));
 					userInfo.setId(rs.getString("m_id"));
