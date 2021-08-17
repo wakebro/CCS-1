@@ -20,6 +20,7 @@ import com.hgs.user.service.Logout;
 import com.hgs.user.service.UService;
 import com.hgs.user.service.UpdateService;
 import com.yjw.board.service.BoardCreateService;
+import com.yjw.board.service.BoardSelectService;
 import com.yjw.board.service.InterBoardService;
 
 /**
@@ -60,7 +61,7 @@ public class PatternServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		System.out.println("URI 패턴 : " + uri);
 		// 로직 실행 후에 넘어갈 경로 지정 역할
-		String ui = null;
+		String url = null;
 		
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
@@ -71,7 +72,7 @@ public class PatternServlet extends HttpServlet {
 // ---------------------------------------------------------------------
 		
 		UService uService = null;
-		String url = "";
+		
 		
 		// 로그인
 			if(uri.equals("/ccs/login_proc.do")) {
@@ -123,21 +124,21 @@ public class PatternServlet extends HttpServlet {
 			System.out.println("글쓰기 페이지로 이동합니다.");
 			ibs = new BoardCreateService();
 			ibs.execute(request, response);
-			ui = "/boardSelect.do";
+			url = "/boardSelect.do";
 		} 
 		// 게시판 목록 조회
 		else if(uri.equals("/ccs/boardSelect.do")) {
-			
 			System.out.println("게시판 페이지로 이동합니다.");
+			ibs = new BoardSelectService();
+			ibs.execute(request, response);
+			url = "/board/board_list_up.jsp";
 		} 
 		// 게시판 글 조회
 		else if(uri.equals("/ccs/boardDetail.do")) {
-		
 			System.out.println("글 조회 페이지로 이동합니다.");
 		} 
 		// 게시판 수정 페이지 열기
 		else if(uri.equals("/ccs/boardUpdate.do")) {
-			
 			System.out.println("글 수정 페이지로 이동합니다.");
 		} 
 		// 게시판 수정 확인
@@ -146,7 +147,6 @@ public class PatternServlet extends HttpServlet {
 		} 
 		// 게시판 삭제
 		else if(uri.equals("/ccs/boardDelete.do")) {
-			
 			System.out.println("글 삭제 페이지로 이동합니다.");
 		} 
 		else {
@@ -155,7 +155,7 @@ public class PatternServlet extends HttpServlet {
 		
 		// 포워딩 로직
 		// 컨트롤러에서 출력에 필요한 데이터를 저장했다가 포워드로 jsp파일에 전달
-		RequestDispatcher rd = request.getRequestDispatcher(ui);
+		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 		
 	}
