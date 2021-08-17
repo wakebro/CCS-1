@@ -23,7 +23,7 @@ import com.yjw.board.service.BoardCreateService;
 import com.yjw.board.service.InterBoardService;
 
 /**
- * Servlet implementation class PatternServlet
+ * Servlet implementation class PatternServlet.
  */
 @WebServlet("*.do")
 public class PatternServlet extends HttpServlet {
