@@ -245,4 +245,86 @@ public class UserDAO {
 			}
 		}
 	}
+	// 회원 정보 가져오기
+	public List<UserVO> getUserPageList(int pageNum){
+		List<UserVO> resultList = new ArrayList<UserVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM member ORDER BY m_no ASC LIMIT ?, 10 ";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pageNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				UserVO user =  new UserVO();
+				user.setName(rs.getString("m_name"));
+				user.setNo(rs.getInt("m_no"));
+				user.setId(rs.getString("m_id"));
+				user.setPw(rs.getString("m_pw"));
+				user.setDept_no(rs.getInt("dept_no"));
+				user.setDept(getUserDept(user.getDept_no()));
+				user.setPhone(rs.getString("m_phone"));
+				user.setEmail(rs.getString("m_email"));
+				resultList.add(user);
+			}
+		} catch (SQLException e) {
+			System.out.println("에러코드 : " + e);
+		} finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return resultList;
+	}
+	// 회원 총 인원
+	public int getUserCount() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		String sql = "SELECT count(m_no) count FROM member";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {;
+				cnt = rs.getInt("count");
+			}
+			return cnt;
+			
+		} catch (SQLException e) {
+			System.out.println("에러코드 : " + e);
+		} finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
 }

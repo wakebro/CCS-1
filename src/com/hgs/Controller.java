@@ -129,6 +129,12 @@ public class Controller extends HttpServlet {
 			bService.execute(request, response);
 			url = "board.do";
 		}
+		// 사원 리스트
+		else if(uri.equals("/ccs/member.do")) {
+			uService = new MemberPagingService();
+			uService.execute(request, response);
+			url = "member_list.jsp";
+		}
 		else {
 			url = "login.jsp";
 		}

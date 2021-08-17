@@ -22,49 +22,48 @@
 			</c:if>
 		</tr>
 	</table>
-	<h1>게시판 창</h1>
-	전체 글 : ${pageDTO.total }
+	<h1>사원 리스트</h1>
+	전체 사원수 : ${userPage.total }
 	<table border="1">
 		<tr>
-			<td><a href="/ccs/write.do"><input type="button" value="글쓰기"></a>
+			<th>이름</th>
+			<th>사번</th>
+			<th>아이디</th>
+			<th>소속</th>
+			<th>전화번호</th>
+			<th>이메일</th>
 		</tr>
+		<c:forEach var="user" items="${userPage.userList }">
 		<tr>
-			<th>글번호</th>
-			<th>글제목</th>
-			<th>글쓴이</th>
-			<th>쓴날짜</th>
-			<th>조회수</th>
-		</tr>
-		<c:forEach var="list" items="${pageDTO.boardList }">
-		<tr>
-			<td>${list.b_no }</td>
-			<td><a href="/ccs/boarddetail.do?b_no=${list.b_no}">${list.b_title}</a></td>
-			<td>${list.m_id }</td>
-			<td>${list.b_date }</td>
-			<td>${list.b_view }</td>
+			<td>${user.name }</td>
+			<td>${user.no}</td>
+			<td>${user.id }</td>
+			<td>${user.dept }</td>
+			<td>${user.phone}</td>
+			<td>${user.email}</td>
 		</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="5" align="center">
+			<td colspan="6" align="center">
 				<%--페이징 버튼 만들기
 				표현할 글이 있는 경우에만 버튼을 표시 --%>
-					<c:if test="${pageDTO.hasBoard() }">
+					<c:if test="${userPage.hasBoard() }">
 					
 					<%-- 뒤로가기 버튼을 표시할지 말지 결정하는 부분 --%>
-						<c:if test="${pageDTO.startPage > 10 }">
-							<a href="/ccs/board.do?page=${pageDTO.startPage - 10}">
+						<c:if test="${userPage.startPage > 10 }">
+							<a href="/ccs/member.do?page=${userPage.startPage - 10}">
 								<input type="button" value="이전">			
 							</a>
 						</c:if>
 						
 						<%-- 페이지 번호 10개 묶음을 깔아주는 부분 --%>
-						<c:forEach var="pNo" begin="${pageDTO.startPage }" end="${pageDTO.endPage }">			
-								<a href="board.do?page=${pNo }">${pNo }</a>
+						<c:forEach var="pNo" begin="${userPage.startPage }" end="${userPage.endPage }">			
+								<a href="member.do?page=${pNo }">${pNo }</a>
 						</c:forEach>
 							
 						<%-- 다음으로 가기 버튼을 표시할지 말지 결정하는 부분 --%>
-						<c:if test="${pageDTO.endPage != pageDTO.totalPages }">
-							<a href="/ccs/board.do?page=${pageDTO.startPage + 10}">
+						<c:if test="${userPage.endPage != userPage.totalPage }">
+							<a href="/ccs/member.do?page=${userPage.startPage + 10}">
 								<input type="button" value="다음">
 							</a>
 						</c:if>

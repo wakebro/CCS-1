@@ -37,7 +37,7 @@
 		<tr>
 			<th>부서</th>
 			<td><input type="text" value="${userDept}" readonly="readonly"></td>
-			<input type="hidden" name="update_dept" value=${userInfo.dept_no } readonly="readonly">
+			<td><input type="hidden" name="update_dept" value=${userInfo.dept_no } readonly="readonly"></td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
