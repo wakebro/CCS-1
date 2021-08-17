@@ -102,12 +102,17 @@ public class Controller extends HttpServlet {
 		else if (uri.contentEquals("/ccs/write_proc.do")) {
 			bService = new BoardWriteService();
 			bService.execute(request, response);
-			url = "/board/board_list.jsp";
+			url = "/board.do";
 		}
 		// 게시판 글 자세히
 		else if (uri.contentEquals("/ccs/boarddetail.do")) {
-			System.out.println(1);
 			bService = new BoardDetailService();
+			bService.execute(request, response);
+			url = "/board/board_detail.jsp";
+		}
+		// 게시판 글 삭제
+		else if (uri.contentEquals("/ccs/boarddelete.do")) {
+			bService = new BoardDeleteService();
 			bService.execute(request, response);
 			url = "/board/board_detail.jsp";
 		}

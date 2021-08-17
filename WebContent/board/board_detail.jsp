@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,12 +31,12 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<a href="/MyFirstWeb/boardselect.do"><input type="button" value="글목록"></a>			
-				<form action="/MyFirstWeb/boardupdateform.do" method="post">
+				<a href="/ccs/board.do"><input type="button" value="글목록"></a>			
+				<form action="/ccs/boardupdateform.do" method="post">
 					<input type="hidden" name="b_no" value="${content.b_no }" >
 					<input type="submit" value="글수정">
 				</form>
-				<form action="/MyFirstWeb/boarddelete.do" method="post">
+				<form action="/ccs/boarddelete.do" method="post">
 					<input type="hidden" name="b_no" value="${content.b_no }" >
 					<input type="submit" value="글삭제">
 				</form>

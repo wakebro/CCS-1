@@ -11,7 +11,7 @@ public class BoardDeleteService implements IBoardService{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		String idSession = (String)session.getAttribute("sid");
+		String idSession = (String)session.getAttribute("session_id");
 		
 		if(idSession != null) {
 			String bId = request.getParameter("bId");

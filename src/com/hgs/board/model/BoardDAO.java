@@ -122,7 +122,7 @@ public class BoardDAO {
 		ResultSet rs = null;
 		
 		BoardVO content = new BoardVO();
-		String sql = "SELECT * FROM board WHERE bid=?";
+		String sql = "SELECT * FROM board WHERE b_no=?";
 		
 		try {
 			con = ds.getConnection();
