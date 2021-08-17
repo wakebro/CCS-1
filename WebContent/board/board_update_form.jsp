@@ -13,30 +13,30 @@
 	<form action="boardupdate.do" method="post">
 	<table border="1">
 		<tr>
-			<td>글번호</td><td>${content.bId }</td>
+			<td>글번호</td><td>${content.b_no }</td>
 		</tr>
 		<tr>		
-			<td>글쓴이</td><td>${content.bName}</td>
+			<td>글쓴이</td><td>${content.m_id}</td>
 		</tr>
 		<tr>
 			<td>글제목</td>
-			<td><input type="text" name="bTitle" required="required" value= "${content.bTitle}"></td>
+			<td><input type="text" name="b_title" required="required" value= "${content.b_title}"></td>
 		</tr>
 			<td>글내용</td>
-			<td><textarea cols="50" rows="10" name="bContent" >${content.bContent}</textarea></td>
+			<td><textarea cols="50" rows="10" name="b_content" >${content.b_content}</textarea></td>
 		<tr>
-			<td>작성날짜</td><td>${content.bDate}</td>
+			<td>작성날짜</td><td>${content.b_date}</td>
 		</tr>
 		<tr>
-			<td>조회</td><td>${content.bHit}</td>
+			<td>조회</td><td>${content.b_view}</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<a href="/MyFirstWeb/boardselect.do"><input type="button" value="글목록"></a>			
-					<input type="hidden" name="bId" value="${content.bId }" >
-					<input type="hidden" name="bName" value="${content.bName}">
-					<input type="hidden" name="bDate" value="${content.bDate}">
-					<input type="hidden" name="bHit" value="${content.bHit}">	
+				<a href="/ccs/board.do"><input type="button" value="글목록"></a>			
+					<input type="hidden" name="b_no" value="${content.b_no }" >
+					<input type="hidden" name="m_id" value="${content.m_id}">
+					<input type="hidden" name="b_date" value="${content.b_date}">
+					<input type="hidden" name="b_view" value="${content.b_view}">	
 					<input type="submit" value="글수정 확인">
 			</td>
 		</tr>

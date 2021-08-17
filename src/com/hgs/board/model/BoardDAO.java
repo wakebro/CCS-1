@@ -122,7 +122,7 @@ public class BoardDAO {
 		ResultSet rs = null;
 		
 		BoardVO content = new BoardVO();
-		String sql = "SELECT * FROM board WHERE bid=?";
+		String sql = "SELECT * FROM board WHERE b_no=?";
 		
 		try {
 			con = ds.getConnection();
@@ -158,6 +158,177 @@ public class BoardDAO {
 		}
 		return content;
 	}// end getBoardDetail
+	// 글 수정
+	public int update(BoardVO board) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int resultcode = 0;
+		String sql = " UPDATE board SET b_title=?, b_content=? WHERE b_no=?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getb_title());
+			pstmt.setString(2, board.getb_content());
+			pstmt.setInt(3, board.getb_no());
+			
+			pstmt.executeUpdate();
+			resultcode = 1;
+		} catch (SQLException e) {
+			System.out.println("에러코드 : " + e);
+		} finally {
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return resultcode;
+	}// end update
+	// 글 삭제
+	public int delete(String b_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM board WHERE b_no=?";
+		int resultcode = 0;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, b_no);
+			pstmt.executeUpdate();
+			
+			resultcode = 1;
+		} catch (SQLException e) {
+			System.out.println("에러코드 : " + e);
+		} finally {
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return resultcode;
+	}//end delete
+	// 글 조회수 상승
+	public void upView(String b_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE board SET b_view = b_view+1 WHERE b_no=?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, b_no);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("에러코드 : " + e);
+		} finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	// 페이지 번호에 맞는 게시물 가져오기
+	public List<BoardVO> getPageList(int pageNum){
+		List<BoardVO> resultList = new ArrayList<BoardVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM board ORDER BY b_no DESC LIMIT ?, 10 ";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pageNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setb_no(rs.getInt("b_no"));
+				board.setm_id(rs.getString("m_id"));
+				board.setb_title(rs.getString("b_title"));
+				board.setb_content(rs.getString("b_content"));
+				board.setb_date(rs.getTimestamp("b_date"));
+				board.setb_view(rs.getInt("b_view"));
+				resultList.add(board);
+			}
+		} catch (SQLException e) {
+			System.out.println("에러코드 : " + e);
+		} finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return resultList;
+	}
+	// 게시글 전체 수
+	public int getBoardCount() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		String sql = "SELECT count(b_no) count FROM board";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {;
+				cnt = rs.getInt("count");
+			}
+			return cnt;
+			
+		} catch (SQLException e) {
+			System.out.println("에러코드 : " + e);
+		} finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}// end getBoardCount
 }
 
 

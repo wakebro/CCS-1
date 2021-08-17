@@ -26,8 +26,8 @@ public class BoardPagingService implements IBoardService {
 
 		// 현재 페이지의 전체 글 가져오기
 		List<BoardVO> boardList = dao.getPageList((page - 1) * 10);
-		int cnt = dao.getBoardCount();
-		BoardPageDTO pageDTO = new BoardPageDTO(cnt, page, boardList); 
+		int total = dao.getBoardCount();
+		BoardPageDTO pageDTO = new BoardPageDTO(total, page, boardList); 
 		
 		// 포워딩을 위한 적재
 		request.setAttribute("pageDTO", pageDTO);

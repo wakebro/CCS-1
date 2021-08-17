@@ -72,7 +72,7 @@ public class UserDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM member WHERE id = ?";
+		String sql = "SELECT * FROM member WHERE m_id = ?";
 		
 		try {
 			con = ds.getConnection();

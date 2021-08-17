@@ -41,11 +41,9 @@ public class LoginService implements UService {
 					e.printStackTrace();
 				}
 			}
-			System.out.println(user.getDept_no());
 			
 			if(userInfo.getDept_no()==1000) {
 				session.setAttribute("admin", userDept);
-				System.out.println("경영지원");
 				
 			}
 			session.setAttribute("userInfo", userInfo);
