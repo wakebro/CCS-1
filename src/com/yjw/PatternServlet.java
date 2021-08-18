@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.hgs.user.service.CheckSessionService;
 import com.hgs.user.service.JoinProcService;
@@ -19,6 +18,7 @@ import com.hgs.user.service.LoginService;
 import com.hgs.user.service.Logout;
 import com.hgs.user.service.UService;
 import com.hgs.user.service.UpdateService;
+
 import com.yjw.board.service.BoardCreateService;
 import com.yjw.board.service.BoardDeleteService;
 import com.yjw.board.service.BoardDetailService;
