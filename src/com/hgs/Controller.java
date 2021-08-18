@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hgs.user.service.*;
 import com.hgs.board.service.*;
+import com.hgs.commute.service.*;
+import com.hgs.commute.service.CommuteBringTimeService;
 
 @WebServlet("*.do")
 public class Controller extends HttpServlet {
@@ -39,6 +41,7 @@ public class Controller extends HttpServlet {
 		
 		UService uService = null;
 		IBoardService bService = null;
+		CService cService = null;
 		String url = "";
 		// 로그인
 		if(uri.equals("/ccs/login_proc.do")) {
@@ -134,6 +137,12 @@ public class Controller extends HttpServlet {
 			uService = new MemberPagingService();
 			uService.execute(request, response);
 			url = "member_list.jsp";
+		}
+		// 출/퇴근
+		else if(uri.equals("/ccs/attendance.do")) {
+			cService = new CommuteBringTimeService();
+			cService.execute(request, response);
+			url = "main.jsp";
 		}
 		else {
 			url = "login.jsp";

@@ -25,8 +25,8 @@ CREATE INDEX idx_member_id ON member(m_id);
 CREATE TABLE commute (
 	c_no int PRIMARY KEY NOT NULL AUTO_INCREMENT,
     m_no int NOT NULL,
-    attendance timestamp NOT NULL,
-    leave_work timestamp NOT NULL,
+    attendance timestamp,
+    leave_work timestamp,
     FOREIGN KEY(c_no) REFERENCES member(m_no)
 );
 
@@ -170,3 +170,8 @@ INSERT INTO member(m_name, m_id, m_pw, dept_no, m_phone, m_email) VALUES('솔라
 INSERT INTO member(m_name, m_id, m_pw, dept_no, m_phone, m_email) VALUES('문별', 'ansquf', '1111', 1005, '010-9999-5500', 'mamamoo@ccs.com');
 INSERT INTO member(m_name, m_id, m_pw, dept_no, m_phone, m_email) VALUES('휘인', 'gnldls', '1111', 1005, '010-9999-5500', 'mamamoo@ccs.com');
 INSERT INTO member(m_name, m_id, m_pw, dept_no, m_phone, m_email) VALUES('화사', 'ghktk', '1111', 1005, '010-9999-5500', 'mamamoo@ccs.com');
+
+
+ALTER TABLE commute MODIFY COLUMN attendance TIMESTAMP NULL;
+ALTER TABLE commute MODIFY COLUMN leave_work TIMESTAMP NULL;
+INSERT INTO commute(m_no, attendance, leave_work) VALUES();

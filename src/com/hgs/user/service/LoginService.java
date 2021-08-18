@@ -30,7 +30,6 @@ public class LoginService implements UService {
 			user.setId(id);
 			user.setPw(pw);
 			userInfo = dao.login(user);
-			String userDept = dao.getUserDept(userInfo.getDept_no());
 			
 			if(userInfo.getId() == null) {
 				try {
@@ -43,11 +42,10 @@ public class LoginService implements UService {
 			}
 			
 			if(userInfo.getDept_no()==1000) {
-				session.setAttribute("admin", userDept);
+				session.setAttribute("admin", userInfo.getDept());
 				
 			}
 			session.setAttribute("userInfo", userInfo);
-			session.setAttribute("userDept", userDept);
 			session.setAttribute("session_id", id);
 			
 		}

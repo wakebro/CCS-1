@@ -14,7 +14,6 @@
 		<tr>
 			<td><a href="/ccs/main.do"><input type="submit" value="메인화면"></a></td>
 			<td><a href="/ccs/userinfo.do"><input type="submit" value="내 정보"></a></td>
-			<td><a href="#"><input type="submit" value="출/퇴근"></a></td>
 			<td><a href="/ccs/board.do?page=1"><input type="submit" value="게시판"></a></td>
 			<c:set var="dept" value="${admin }"></c:set>
 			<c:if test="${dept eq '관리자' }">
@@ -23,5 +22,19 @@
 		</tr>
 	</table>
 	<h1>Main 창</h1>
+		<form action="/ccs/attendance.do" method="post">
+			<input type="hidden" name="cKeyword" value="${userInfo.no}">
+			<input type="submit" value="출/퇴근">
+		</form>
+		<hr>
+		<table border="1">
+			<tr>
+				<td>No.</td>
+				<td>사원번호</td>
+				<td>이름</td>
+				<td>출근시간</td>
+				<td>퇴근시간</td>
+			</tr>
+		</table>
 </body>
 </html>

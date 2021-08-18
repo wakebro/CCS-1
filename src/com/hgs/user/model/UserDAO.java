@@ -154,6 +154,7 @@ public class UserDAO {
 					userInfo.setNo(rs.getInt("m_no"));
 					userInfo.setId(rs.getString("m_id"));
 					userInfo.setDept_no(rs.getInt("dept_no"));
+					userInfo.setDept(getUserDept(userInfo.getDept_no()));
 					userInfo.setPhone(rs.getString("m_phone"));
 					userInfo.setEmail(rs.getString("m_email"));
 				}
