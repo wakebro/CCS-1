@@ -67,7 +67,7 @@ public class BoardDAO {
 				if(pstmt!=null && !pstmt.isClosed()) {
 					pstmt.close();
 				}
-			} catch(Exception e) {
+			} catch(SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -123,12 +123,151 @@ public class BoardDAO {
 	// END getBoardList
 	
 	
+	public BoardVO getBoardDetail(String b_no) {
+		BoardVO board = new BoardVO();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM board WHERE b_no=?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, b_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				board.setB_no(rs.getInt("b_no"));
+				board.setM_id(rs.getString("m_id"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_date(rs.getTimestamp("b_date"));
+				board.setB_view(rs.getInt("b_view"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(con!=null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt!=null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs!=null && !rs.isClosed()){
+					rs.close();
+				}
+			} catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return board;
+	} 
+	// END getBoardDetail
 	
 	
+	public int updateBoard(BoardVO board) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int resultCode ;
+		 
+		String sql = "UPDATE board SET b_title=?, b_content=? WHERE b_no=?";
+				
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getB_title());
+			pstmt.setString(2, board.getB_content());
+			pstmt.setInt(3, board.getB_no());
+			
+			pstmt.executeUpdate();
+			resultCode = 1;
+		} catch(Exception e) {
+			e.printStackTrace();
+			resultCode = 0;
+		} finally {
+			try {
+				if(con!=null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt!=null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return resultCode;
+	}
+	// END updateBoard
 	
 	
+	public void upView(String b_no) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE board SET b_view = b_view + 1 WHERE b_no=?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, b_no);
+			pstmt.executeUpdate();
+			
+ 		} catch(Exception e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			try {
+ 				if(con!=null && !con.isClosed()) {
+ 					con.close();
+ 				}
+ 				if(pstmt!=null && !pstmt.isClosed()) {
+ 					pstmt.close();
+ 				}
+ 			} catch(SQLException e) {
+ 				e.printStackTrace();
+ 			}
+ 		} 
+	}
+	// END upView
 	
 	
+	public int deleteBoard(String b_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int resultCode;
+		
+		String sql = "DELETE FROM board WHERE b_no=?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, b_no);
+			pstmt.executeUpdate();
+			resultCode = 1;
+		} catch(Exception e) {
+			e.printStackTrace();
+			resultCode = 0;
+		} finally {
+			try {
+				if(con!=null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt!=null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return resultCode;
+	}
+	// END deleteBoard
 	
 	
 	
