@@ -9,6 +9,7 @@ public class MainPageService implements UService {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		
 		if (session.getAttribute("userInfo") == null) {
 			try {
 				session.invalidate();

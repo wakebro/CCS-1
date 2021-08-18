@@ -20,10 +20,20 @@ public class WriteCommuteService implements CService {
 		
 		CommuteVO lastestDate =(CommuteVO) session.getAttribute("lastestDate");
 		CommuteDAO dao = CommuteDAO.getInstance();
+		System.out.println();
 		
-		
+		// 새 출근인 경우
+		if(lastestDate == null) {
+			dao.write_work(m_no);
+			lastestDate = dao.bringLastestDate(m_no);
+			List<CommuteVO> commuteList = dao.bringDate(m_no);
+			System.out.println("새출근" + lastestDate.getC_no());
+			System.out.println("새출근" + commuteList);
+			session.setAttribute("commuteList", commuteList);
+			session.setAttribute("lastestDate", lastestDate);
+		}
 		// 출퇴근 기록이 모두 있다면 새로 출근
-		if(lastestDate.getAttendance() != null && lastestDate.getLeave_work() != null) {
+		else if(lastestDate.getAttendance() != null && lastestDate.getWork_leave() != null) {
 			dao.write_work(m_no);
 			lastestDate = dao.bringLastestDate(m_no);
 			List<CommuteVO> commuteList = dao.bringDate(m_no);

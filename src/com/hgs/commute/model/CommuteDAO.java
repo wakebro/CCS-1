@@ -35,7 +35,6 @@ public class CommuteDAO {
 		ResultSet rs = null;
 		List<CommuteVO> resultList = new ArrayList<CommuteVO>();
 		String sql = "SELECT * FROM commute WHERE m_no = ? ORDER BY c_no DESC";
-		
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -47,10 +46,11 @@ public class CommuteDAO {
 				commu.setC_no(rs.getInt("c_no"));
 				commu.setM_no(m_no);
 				commu.setAttendance(rs.getTimestamp("attendance"));
-				commu.setLeave_work(rs.getTimestamp("leave_work"));
+				commu.setWork_leave(rs.getTimestamp("leave_work"));
+				commu.setWork();
+				commu.setLeave();
 				resultList.add(commu);
 			}
-			
 		} catch (SQLException e) {
 			System.out.println("에러 : " + e);
 		} finally {
@@ -84,12 +84,14 @@ public class CommuteDAO {
 			pstmt.setInt(1, m_no);
 			rs = pstmt.executeQuery();
 			
-			rs.next();
-			DBdate.setC_no(rs.getInt("c_no"));
-			DBdate.setM_no(m_no);
-			DBdate.setAttendance(rs.getTimestamp("attendance"));
-			DBdate.setLeave_work(rs.getTimestamp("leave_work"));
-			
+			if(rs.next()) {
+				DBdate.setC_no(rs.getInt("c_no"));
+				DBdate.setM_no(m_no);
+				DBdate.setAttendance(rs.getTimestamp("attendance"));
+				DBdate.setWork_leave(rs.getTimestamp("leave_work"));
+			} else {
+				DBdate = null;
+			}
 		} catch (SQLException e) {
 			System.out.println("에러 : " + e);
 		} finally {

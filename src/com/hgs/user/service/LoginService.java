@@ -48,12 +48,13 @@ public class LoginService implements UService {
 			
 			if(userInfo.getDept_no()==1000) {
 				session.setAttribute("admin", userInfo.getDept());
-				
 			}
 			
 			// 메인화면 출력 내용
 			CommuteDAO cDao = CommuteDAO.getInstance();
+			// 출퇴근 기록지
 			List<CommuteVO> commuteList = cDao.bringDate(userInfo.getNo());
+			// 최신 출퇴근 기록
 			CommuteVO lastestDate = cDao.bringLastestDate(userInfo.getNo());
 
 			// 세션 생성

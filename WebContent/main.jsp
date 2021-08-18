@@ -23,31 +23,33 @@
 	</table>
 	<h1>Main 창</h1>
 		<form action="/ccs/commute.do" method="post">
-			<c:if test="${lastestDate.leave_work != null }">
+		<c:choose>
+			<c:when test="${lastestDate.attendance == null &&lastestDate.work_leave == null  }">
 				<input type="hidden" name="cKeyword" value="${userInfo.no}">
 				<input type="submit" value="출근">
-			</c:if>
-			<c:if test="${lastestDate.leave_work == null }">
-			<input type="hidden" name="cKeyword" value="${userInfo.no}">
-			<input type="submit" value="퇴근">
-			</c:if>
+			</c:when>
+			<c:when test="${lastestDate.work_leave != null }">
+				<input type="hidden" name="cKeyword" value="${userInfo.no}">
+				<input type="submit" value="출근">
+			</c:when>
+			<c:when test="${lastestDate.work_leave == null }">
+				<input type="hidden" name="cKeyword" value="${userInfo.no}">
+				<input type="submit" value="퇴근">
+			</c:when>
+		</c:choose>
 		</form>
 		<hr>
 		<table border="1">
 			<tr>
 				<td>No.</td>
-				<td>사원번호</td>
-				<td>이름</td>
 				<td>출근시간</td>
 				<td>퇴근시간</td>
 			</tr>
 			<c:forEach var="list" items="${commuteList}">
 			<tr>
 				<td>${list.c_no }</td>
-				<td>${list.m_no }</td>
-				<td>${userInfo.name}</td>
-				<td>${list.attendance }</td>
-				<td>${list.leave_work }</td>
+				<td>${list.work }</td>
+				<td>${list.leave}</td>
 			</tr>
 			</c:forEach>
 		</table>
