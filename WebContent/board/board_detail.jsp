@@ -32,16 +32,17 @@
 		</tr>
 	</table>
 	<p>
-		<form style='display:inline' action="/ccs/boardUpdate.do" method="post">
-			<input type="hidden" value="${board.b_no }" name="b_no" />
-			<input type="submit" value="수정하기" />
-		</form>&nbsp;
-		
-		<form style='display:inline' action="/ccs/boardDelete.do" method="post">
-			<input type="hidden" value="${board.b_no }" name="b_no" />
-			<input type="submit" value="삭제하기" />
-		</form>&nbsp;
-		
+		<c:if test="${ writer == 1}"> 	
+			<form style='display:inline' action="/ccs/boardUpdate.do" method="post">
+				<input type="hidden" value="${board.b_no }" name="b_no" />
+				<input type="submit" value="수정하기" />
+			</form>&nbsp;
+			
+			<form style='display:inline' action="/ccs/boardDelete.do" method="post">
+				<input type="hidden" value="${board.b_no }" name="b_no" />
+				<input type="submit" value="삭제하기" />
+			</form>&nbsp;
+		</c:if>
 		<button type="button" onclick="location.href='/ccs/boardSelect.do'">리스트로 돌아가기</button>&nbsp;
 	</p>
 </body>

@@ -33,6 +33,14 @@ public class BoardDetailService implements InterBoardService{
 		BoardVO board = dao.getBoardDetail(b_no);
 		System.out.println(board); // 디버깅
 		
+		if(idSession.equals(board.getM_id())) {
+			System.out.println(1);
+			request.setAttribute("writer", 1);
+		} else {
+			System.out.println(0);
+			request.setAttribute("writer", 0);
+		}
+		
 		request.setAttribute("board", board);
 	}
 }
