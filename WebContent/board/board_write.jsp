@@ -12,10 +12,10 @@
 	<form action="/ccs/boardCreate.do" method="post">
 		<table border="1">
 			<tr>
-				<td><input type="text" name="title" placeholder="제목을 입력해주세요"></td>
+				<td><input type="text" name="title" placeholder="제목을 입력해주세요" required="required"></td>
 			</tr>
 			<tr>
-				<td><textarea cols="50" rows="20" name="content"></textarea></td>
+				<td><textarea cols="50" rows="20" name="content" required="required"></textarea></td>
 			</tr>
 			<tr>
 				<td><input type="text" name="id" value="${session_id}" readonly></td>
