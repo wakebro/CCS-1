@@ -13,7 +13,7 @@
 		<thead>
 			<tr>
 				<th>글 번호</th>
-				<th>글 제목</th>
+				<th>제목</th>
 				<th>조회수</th>
 				<th>글쓴이</th>
 				<th>글 쓴 날짜</th>

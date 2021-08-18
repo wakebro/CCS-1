@@ -1,12 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CCS - ${board.b_title }</title>
 </head>
 <body>
-
+	<table border="1">
+		<tr>	
+			<td>${board.b_no }</td>
+			<th>글 번호</th>
+		</tr>
+		<tr>	
+			<td>${board.b_view }</td>
+			<th>조회수</th>
+		</tr>
+		<tr>	
+			<td>${board.m_id }</td>
+			<th>글쓴이</th>
+		</tr>
+		<tr>	
+			<td>${board.b_date }</td>
+		</tr>
+		<tr>	
+			<td>${board.b_title }</td>
+		</tr>
+		<tr>	
+			<td><textarea cols="50" rows="20">${board.b_content }</textarea></td>
+		</tr>
+	</table>
+	<p>
+		<form style='display:inline' action="/ccs/boardUpdate.do" method="post">
+			<input type="hidden" value="${board.b_no }" name="b_no" />
+			<input type="submit" value="수정하기" />
+		</form>&nbsp;
+		
+		<form style='display:inline' action="/ccs/boardDelete.do" method="post">
+			<input type="hidden" value="${board.b_no }" name="b_no" />
+			<input type="submit" value="삭제하기" />
+		</form>&nbsp;
+		
+		<button type="button" onclick="location.href='/ccs/boardSelect.do'">리스트로 돌아가기</button>&nbsp;
+	</p>
 </body>
 </html>
