@@ -20,7 +20,10 @@ import com.hgs.user.service.Logout;
 import com.hgs.user.service.UService;
 import com.hgs.user.service.UpdateService;
 import com.yjw.board.service.BoardCreateService;
+import com.yjw.board.service.BoardDeleteService;
+import com.yjw.board.service.BoardDetailService;
 import com.yjw.board.service.BoardSelectService;
+import com.yjw.board.service.BoardUpdateService;
 import com.yjw.board.service.InterBoardService;
 
 /**
@@ -121,7 +124,7 @@ public class PatternServlet extends HttpServlet {
 		
 		// 게시판 글쓰기
 		else if(uri.equals("/ccs/boardCreate.do")) {
-			System.out.println("글쓰기 페이지로 이동합니다.");
+			System.out.println("글쓰기를 요청합니다.");
 			ibs = new BoardCreateService();
 			ibs.execute(request, response);
 			url = "/boardSelect.do";
@@ -136,18 +139,30 @@ public class PatternServlet extends HttpServlet {
 		// 게시판 글 조회
 		else if(uri.equals("/ccs/boardDetail.do")) {
 			System.out.println("글 조회 페이지로 이동합니다.");
+			ibs = new BoardDetailService();
+			ibs.execute(request, response);
+			url="/board/board_detail.jsp";
 		} 
 		// 게시판 수정 페이지 열기
 		else if(uri.equals("/ccs/boardUpdate.do")) {
 			System.out.println("글 수정 페이지로 이동합니다.");
+			ibs = new BoardDetailService();
+			ibs.execute(request, response);
+			url="/board/board_update.jsp";
 		} 
 		// 게시판 수정 확인
 		else if(uri.equals("/ccs/boardUpdateOK.do")) {
-
+			System.out.println("글 수정을 요청합니다.");
+			ibs = new BoardUpdateService();
+			ibs.execute(request, response);
+			url="/board/board_detail.jsp";
 		} 
 		// 게시판 삭제
 		else if(uri.equals("/ccs/boardDelete.do")) {
 			System.out.println("글 삭제 페이지로 이동합니다.");
+			ibs = new BoardDeleteService();
+			ibs.execute(request, response);
+			url="/boardSelect.do";
 		} 
 		else {
 			out.print("잘못된 패턴입니다 ...");
