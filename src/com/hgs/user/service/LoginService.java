@@ -34,6 +34,7 @@ public class LoginService implements UService {
 			user.setId(id);
 			user.setPw(pw);
 			userInfo = dao.login(user);
+			String userDept = dao.getUserDept(userInfo.getDept_no());
 			
 			// 로그인
 			if(userInfo.getId() == null) {
@@ -60,6 +61,7 @@ public class LoginService implements UService {
 			// 세션 생성
 			session.setAttribute("userInfo", userInfo);
 			session.setAttribute("session_id", id);
+			session.setAttribute("userDept", userDept);
 			session.setAttribute("commuteList", commuteList);
 			session.setAttribute("lastestDate", lastestDate);
 			
