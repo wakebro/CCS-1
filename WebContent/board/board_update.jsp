@@ -26,10 +26,10 @@
 				<td>${board.b_date }</td>
 			</tr>
 			<tr>	
-				<td><input type="text" name="title" value="${board.b_title }"/></td>
+				<td><input type="text" name="title" value="${board.b_title }" required="required"/></td>
 			</tr>
 			<tr>	
-				<td><textarea cols="50" rows="20" name="content">${board.b_content }</textarea></td>
+				<td><textarea cols="50" rows="20" name="content" required="required">${board.b_content }</textarea></td>
 			</tr>
 		</table>
 		<p>
