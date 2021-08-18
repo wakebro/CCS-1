@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.hgs.user.service.*;
 import com.hgs.board.service.*;
 import com.hgs.commute.service.*;
-import com.hgs.commute.service.CommuteBringTimeService;
+import com.hgs.commute.service.WriteCommuteService;
 
 @WebServlet("*.do")
 public class Controller extends HttpServlet {
@@ -139,8 +139,8 @@ public class Controller extends HttpServlet {
 			url = "member_list.jsp";
 		}
 		// 출/퇴근
-		else if(uri.equals("/ccs/attendance.do")) {
-			cService = new CommuteBringTimeService();
+		else if(uri.equals("/ccs/commute.do")) {
+			cService = new WriteCommuteService();
 			cService.execute(request, response);
 			url = "main.jsp";
 		}

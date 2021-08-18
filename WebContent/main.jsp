@@ -22,9 +22,15 @@
 		</tr>
 	</table>
 	<h1>Main 창</h1>
-		<form action="/ccs/attendance.do" method="post">
+		<form action="/ccs/commute.do" method="post">
+			<c:if test="${lastestDate.leave_work != null }">
+				<input type="hidden" name="cKeyword" value="${userInfo.no}">
+				<input type="submit" value="출근">
+			</c:if>
+			<c:if test="${lastestDate.leave_work == null }">
 			<input type="hidden" name="cKeyword" value="${userInfo.no}">
-			<input type="submit" value="출/퇴근">
+			<input type="submit" value="퇴근">
+			</c:if>
 		</form>
 		<hr>
 		<table border="1">
@@ -35,6 +41,15 @@
 				<td>출근시간</td>
 				<td>퇴근시간</td>
 			</tr>
+			<c:forEach var="list" items="${commuteList}">
+			<tr>
+				<td>${list.c_no }</td>
+				<td>${list.m_no }</td>
+				<td>${userInfo.name}</td>
+				<td>${list.attendance }</td>
+				<td>${list.leave_work }</td>
+			</tr>
+			</c:forEach>
 		</table>
 </body>
 </html>

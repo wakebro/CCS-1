@@ -172,6 +172,8 @@ INSERT INTO member(m_name, m_id, m_pw, dept_no, m_phone, m_email) VALUES('휘인
 INSERT INTO member(m_name, m_id, m_pw, dept_no, m_phone, m_email) VALUES('화사', 'ghktk', '1111', 1005, '010-9999-5500', 'mamamoo@ccs.com');
 
 
+
+
 ALTER TABLE commute MODIFY COLUMN attendance TIMESTAMP NULL;
 ALTER TABLE commute MODIFY COLUMN leave_work TIMESTAMP NULL;
-INSERT INTO commute(m_no, attendance, leave_work) VALUES();
+INSERT INTO commute(m_no, attendance) VALUES(1,now());

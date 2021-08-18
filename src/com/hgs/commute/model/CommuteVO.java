@@ -2,14 +2,15 @@ package com.hgs.commute.model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class CommuteVO {
 	
 	private int c_no;
 	private int m_no;
 	private Date today;
-	private Timestamp attendance;
-	private Timestamp leave_work;
+	private Format attendance;
+	private Timestamp work_leave;
 	
 	public CommuteVO() {
 		
@@ -39,26 +40,26 @@ public class CommuteVO {
 		this.today = today;
 	}
 
-	public Timestamp getAttendance() {
+	public SimpleDateFormat getAttendance() {
 		return attendance;
 	}
 
-	public void setAttendance(Timestamp attendance) {
+	public void setAttendance(SimpleDateFormat attendance) {
 		this.attendance = attendance;
 	}
 
-	public Timestamp getLeave_work() {
-		return leave_work;
+	public SimpleDateFormat getWork_leave() {
+		return work_leave;
 	}
 
-	public void setLeave_work(Timestamp leave_work) {
-		this.leave_work = leave_work;
+	public void setWork_leave(SimpleDateFormat work_leave) {
+		this.work_leave = work_leave;
 	}
 
 	@Override
 	public String toString() {
 		return "CommuteVO [c_no=" + c_no + ", m_no=" + m_no + ", today=" + today + ", attendance=" + attendance
-				+ ", leave_work=" + leave_work + "]";
+				+ ", work_leave=" + work_leave + "]";
 	}
 	
 }

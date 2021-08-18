@@ -1,6 +1,8 @@
 package com.hgs.commute.model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -26,13 +28,13 @@ public class CommuteDAO {
 		return dao;
 	}
 	
-	// 출퇴근 기록 확인
-	public CommuteVO bringDate(int m_no) {
+	// 출퇴근 전체 기록 확인
+	public List<CommuteVO> bringDate(int m_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		CommuteVO commu = new CommuteVO();
-		String sql = "SELECT * FROM commute WHERE m_no = ? ORDER BY c_no DESC LIMIT 1";
+		List<CommuteVO> resultList = new ArrayList<CommuteVO>();
+		String sql = "SELECT * FROM commute WHERE m_no = ? ORDER BY c_no DESC";
 		
 		try {
 			con = ds.getConnection();
@@ -40,11 +42,13 @@ public class CommuteDAO {
 			pstmt.setInt(1, m_no);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
+				CommuteVO commu = new CommuteVO();
 				commu.setC_no(rs.getInt("c_no"));
 				commu.setM_no(m_no);
 				commu.setAttendance(rs.getTimestamp("attendance"));
 				commu.setLeave_work(rs.getTimestamp("leave_work"));
+				resultList.add(commu);
 			}
 			
 		} catch (SQLException e) {
@@ -64,7 +68,46 @@ public class CommuteDAO {
 				e.printStackTrace();
 			}
 		}
-		return commu;
+		return resultList;
+	}
+	// 최신 출퇴근 기록
+	public CommuteVO bringLastestDate(int m_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CommuteVO DBdate = new CommuteVO();
+		String sql = "SELECT * FROM commute WHERE m_no = ? ORDER BY c_no DESC LIMIT 1";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, m_no);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			DBdate.setC_no(rs.getInt("c_no"));
+			DBdate.setM_no(m_no);
+			DBdate.setAttendance(rs.getTimestamp("attendance"));
+			DBdate.setLeave_work(rs.getTimestamp("leave_work"));
+			
+		} catch (SQLException e) {
+			System.out.println("에러 : " + e);
+		} finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return DBdate;
 	}
 	// 출근 기록하기
 	public void write_work(int m_no) {
