@@ -22,7 +22,7 @@ import com.hgs.user.service.UpdateService;
 import com.yjw.board.service.BoardCreateService;
 import com.yjw.board.service.BoardDeleteService;
 import com.yjw.board.service.BoardDetailService;
-import com.yjw.board.service.BoardSelectService;
+import com.yjw.board.service.BoardPagingService;
 import com.yjw.board.service.BoardUpdateService;
 import com.yjw.board.service.InterBoardService;
 
@@ -132,7 +132,7 @@ public class PatternServlet extends HttpServlet {
 		// 게시판 목록 조회
 		else if(uri.equals("/ccs/boardSelect.do")) {
 			System.out.println("게시판 페이지로 이동합니다.");
-			ibs = new BoardSelectService();
+			ibs = new BoardPagingService();
 			ibs.execute(request, response);
 			url = "/board/board_list_up.jsp";
 		} 
