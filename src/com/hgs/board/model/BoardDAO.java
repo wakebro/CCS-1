@@ -13,7 +13,7 @@ public class BoardDAO {
 	// DAO의 연결부(생성자, getInstance())까지 작성
 	private DataSource ds;
 	
-	public BoardDAO() {
+	private BoardDAO() {
 		try {
 			Context ct = new InitialContext();
 			ds = (DataSource)ct.lookup("java:comp/env/jdbc/mysql");

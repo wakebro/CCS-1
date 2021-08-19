@@ -22,6 +22,8 @@
 		</tr>
 	</table>
 	<br>
+	<hr>
+	<h2>정보창</h2>
 	<table border="1">
 		<tr>
 			<th>이름</th>

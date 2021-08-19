@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hgs.user.service.*;
+import com.hgs.approve.service.*;
 import com.hgs.board.service.*;
 import com.hgs.commute.service.*;
-import com.hgs.commute.service.WriteCommuteService;
 
 @WebServlet("*.do")
 public class Controller extends HttpServlet {
@@ -42,7 +42,9 @@ public class Controller extends HttpServlet {
 		UService uService = null;
 		IBoardService bService = null;
 		CService cService = null;
+		AService aService = null;
 		String url = "";
+		
 		// 로그인
 		if(uri.equals("/ccs/login_proc.do")) {
 			uService = new LoginService();
@@ -143,6 +145,18 @@ public class Controller extends HttpServlet {
 			cService = new WriteCommuteService();
 			cService.execute(request, response);
 			url = "/main.do?page=1";
+		}
+		// 결재창
+		else if(uri.equals("/ccs/approval.do")) {
+//			aService = new WriteCommuteService();
+//			aService.execute(request, response);
+			url = "/approval/approval.jsp";
+		}
+		// 결재 요청
+		else if(uri.equals("/ccs/approval_proc.do")) {
+			aService = new ApproveWriteService();
+			aService.execute(request, response);
+			url = "/approval/approval.jsp";
 		}
 		else {
 			url = "login.jsp";

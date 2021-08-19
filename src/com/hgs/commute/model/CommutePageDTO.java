@@ -21,7 +21,6 @@ public class CommutePageDTO {
 			this.endPage = 0;
 		} else {
 			this.totalPage = total % 5 > 0 ? (total / 5) + 1 : total / 5;
-			System.out.println("dto:"+this.totalPage);
 			int temp = this.currentPage % 10;
 			this.startPage = this.currentPage / 10 * 10 + 1;
 			if (temp == 0)

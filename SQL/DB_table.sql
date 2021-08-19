@@ -27,7 +27,7 @@ CREATE TABLE commute (
     m_no int NOT NULL,
     attendance timestamp,
     leave_work timestamp,
-    FOREIGN KEY(c_no) REFERENCES member(m_no)
+    FOREIGN KEY(m_no) REFERENCES member(m_no)
 );
 ALTER TABLE commute DROP FOREIGN KEY commute_ibfk_1;
 ALTER TABLE commute ADD CONSTRAINT FK_1 FOREIGN KEY(m_no) REFERENCES member(m_no);
@@ -41,6 +41,29 @@ CREATE TABLE board (
     b_view int DEFAULT 0,
     FOREIGN KEY(m_id) REFERENCES member(m_id)
 );
+
+CREATE TABLE approval (
+	a_no INT AUTO_INCREMENT PRIMARY KEY,
+    a_status VARCHAR(20),
+    a_category VARCHAR(20) NOT NULL,
+    a_reason VARCHAR(2000),
+    d_name VARCHAR(20) NOT NULL,
+    m_no int NOT NULL,
+    m_name VARCHAR(20) NOT NULL,
+    a_start TIMESTAMP NOT NULL,
+    a_end TIMESTAMP NOT NULL,
+    a_head VARCHAR(20),
+    FOREIGN KEY approval_FK (m_no) REFERENCES member(m_no)
+);
+
+CREATE TABLE a_category (
+	cate_no INT AUTO_INCREMENT PRIMARY KEY,
+    cate_name VARCHAR(20)
+);
+INSERT INTO a_category(cate_name) VALUES('휴가');
+INSERT INTO a_category(cate_name) VALUES('반차');
+INSERT INTO a_category(cate_name) VALUES('월차');
+INSERT INTO a_category(cate_name) VALUES('연차');
 
 /*부서 테이블 설정*/
 ALTER TABLE dept AUTO_INCREMENT=1000;

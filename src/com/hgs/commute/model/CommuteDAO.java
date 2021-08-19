@@ -34,7 +34,9 @@ public class CommuteDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM commute WHERE m_no = ? ORDER BY c_no DESC LIMIT ?, 5";
+		String sql = "SELECT @rownum:=@rownum+1 num, A.* FROM\r\n" + 
+				"(SELECT * FROM commute WHERE m_no=? ORDER BY c_no)A,\r\n" + 
+				"(SELECT @rownum := 0) B ORDER BY num DESC LIMIT ?, 5";
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -44,7 +46,7 @@ public class CommuteDAO {
 			
 			while(rs.next()) {
 				CommuteVO commu = new CommuteVO();
-				commu.setC_no(rs.getInt("c_no"));
+				commu.setC_no(rs.getInt("num"));
 				commu.setM_no(m_no);
 				commu.setAttendance(rs.getTimestamp("attendance"));
 				commu.setWork_leave(rs.getTimestamp("leave_work"));

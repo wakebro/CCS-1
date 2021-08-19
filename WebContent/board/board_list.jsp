@@ -21,7 +21,9 @@
 			</c:if>
 		</tr>
 	</table>
-	<h1>게시판 창</h1>
+	<br>
+	<hr>
+	<h2>게시판 창</h2>
 	전체 글 : ${pageDTO.total }
 	<table border="1">
 		<tr>
