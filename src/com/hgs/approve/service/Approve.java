@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.hgs.approve.model.*;
+import com.hgs.user.model.UserVO;
 
 public class Approve implements AService {
 	@Override
@@ -24,10 +25,19 @@ public class Approve implements AService {
 				e.printStackTrace();
 			}
 		}else {
+			UserVO userInfo = (UserVO) session.getAttribute("userInfo");
+			// 결재 종류 불러오기
 			List<A_CategoryVO> categoryList = new ArrayList<A_CategoryVO>();
 			A_CategoryDAO dao = A_CategoryDAO.getInstance();
 			categoryList = dao.getCategory();
 			session.setAttribute("categoryList", categoryList);
+			
+			// 내 결재 요청 기록 불러오기
+			List<ApproveVO> approveList = new ArrayList<ApproveVO>();
+			ApproveDAO aDao = ApproveDAO.getInstance();
+			approveList = aDao.getMyApprove(userInfo.getNo());
+			
+			session.setAttribute("approveList", approveList);
 		}
 	}
 }

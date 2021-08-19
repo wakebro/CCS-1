@@ -35,7 +35,6 @@
 			</tr>
 			<tr>
 				<td>
-				
 					<select name="a_category" style="width: 100%">
 						<c:forEach var="list" items="${categoryList}">
 							<option value="${list.cate_name }">${list.cate_name }</option>
@@ -51,7 +50,7 @@
 	</form>
 	<br>
 	<hr>
-	<h2>내 요청</h2>
+	<h2>요청 기록</h2>
 	<table border="1">
 		<tr>
 			<th style="width: 90px">상태</th>
@@ -62,12 +61,14 @@
 			<th style="width: 90px">결제자</th>
 		</tr>
 		<tr>
-			<td>대기</td>
-			<td>연차</td>
-			<td>2020-05-12</td>
-			<td>2020-05-12</td>
-			<td>신병 위로 휴가</td>
-			<td>형기상</td>
+			<c:forEach var="list" items="${approveList }">
+				<td>${list.a_status }</td>
+				<td>${list.a_category }</td>
+				<td>${list.a_start_ }</td>
+				<td>${list.a_end_ }</td>
+				<td>${list.a_reason }</td>
+				<td>${list.a_head }</td>
+			</c:forEach>
 		</tr>
 	</table>
 </body>

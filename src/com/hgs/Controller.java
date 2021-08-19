@@ -156,7 +156,7 @@ public class Controller extends HttpServlet {
 		else if(uri.equals("/ccs/approval_proc.do")) {
 			aService = new ApproveWriteService();
 			aService.execute(request, response);
-			url = "/approval/approval.jsp";
+			url = "approval.do";
 		}
 		else {
 			url = "login.jsp";

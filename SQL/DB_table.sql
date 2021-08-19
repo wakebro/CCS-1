@@ -55,6 +55,8 @@ CREATE TABLE approval (
     a_head VARCHAR(20),
     FOREIGN KEY approval_FK (m_no) REFERENCES member(m_no)
 );
+ALTER TABLE approval MODIFY COLUMN a_status VARCHAR(20) DEFAULT '대기';
+ALTER TABLE approval MODIFY COLUMN a_head VARCHAR(20) DEFAULT '';
 
 CREATE TABLE a_category (
 	cate_no INT AUTO_INCREMENT PRIMARY KEY,
