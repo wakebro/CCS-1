@@ -270,6 +270,91 @@ public class BoardDAO {
 	// END deleteBoard
 	
 	
+	public List<BoardVO> getPageList(int pageNum) {
+		
+		List<BoardVO> boardList = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM board ORDER BY b_no DESC LIMIT ?, 10";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, pageNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setB_no(rs.getInt("b_no"));
+				board.setM_id(rs.getString("m_id"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_date(rs.getTimestamp("b_date"));
+				board.setB_view(rs.getInt("b_view"));
+				
+				boardList.add(board);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(con!=null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt!=null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs!=null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return boardList;
+	}
+	// END getPageList
 	
+	
+	public int getBoardTotal() {
+			
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int totalNum = 0;
+			
+		String sql = "SELECT COUNT(*) FROM board";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				totalNum = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(con!=null && !con.isClosed()){
+					con.close();
+				}
+				if(pstmt!=null && !pstmt.isClosed()){
+					pstmt.close();
+				}
+				if(rs!=null && !rs.isClosed()){
+					rs.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return totalNum;
+	}
+	// END getBoardTotal
 	
 }
