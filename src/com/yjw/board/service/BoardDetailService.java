@@ -33,6 +33,8 @@ public class BoardDetailService implements InterBoardService{
 		BoardVO board = dao.getBoardDetail(b_no);
 		System.out.println(board); // 디버깅
 		
+		// 자신이 올린 게시물만 수정, 삭제할 수 있게 하는 로직
+		// 세션에 저장된 아이디와 게시판의 글쓴이가 일치하는지 검사
 		if(idSession.equals(board.getM_id())) {
 			System.out.println(1);
 			request.setAttribute("writer", 1);
