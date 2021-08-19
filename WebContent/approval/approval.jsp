@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>휴가결재</title>
+<title>결재창</title>
 </head>
 <body>
 	<h1>어서오세요, ${userInfo.name }님</h1>
@@ -24,7 +24,7 @@
 	</table>
 	<br>
 	<hr>
-	<h2>결재 요청창</h2>
+	<h2>결재창</h2>
 	<form action="approval_proc.do" method="post">
 		<table border="1">
 			<tr>
@@ -34,10 +34,17 @@
 				<th style="width: 150px">메모</th>
 			</tr>
 			<tr>
-				<td>종류</td>
-				<td>2020-05-12</td>
-				<td>2020-05-12</td>
-				<td><input type="text" name="reason"></td>
+				<td>
+				
+					<select name="a_category" style="width: 100%">
+						<c:forEach var="list" items="${categoryList}">
+							<option value="${list.cate_name }">${list.cate_name }</option>
+						</c:forEach>
+					</select>
+				</td>
+				<td><input type="date" name="a_start"></td>
+				<td><input type="date" name="a_end"></td>
+				<td><input type="text" name="a_reason"></td>
 				<td><input type="submit" value="요청">
 			</tr>
 		</table>

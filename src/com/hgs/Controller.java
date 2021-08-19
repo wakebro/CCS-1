@@ -148,8 +148,8 @@ public class Controller extends HttpServlet {
 		}
 		// 결재창
 		else if(uri.equals("/ccs/approval.do")) {
-//			aService = new WriteCommuteService();
-//			aService.execute(request, response);
+			aService = new Approve();
+			aService.execute(request, response);
 			url = "/approval/approval.jsp";
 		}
 		// 결재 요청
