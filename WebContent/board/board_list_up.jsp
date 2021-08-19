@@ -32,8 +32,19 @@
 		</tbody>
 	</table>
 	<p>
-		<button type="button" onclick="location.href='http://localhost:8181/ccs/board/board_write.jsp'">새 글 쓰기</button>&nbsp;
-		<button type="button" onclick="location.href='/ccs/logout.do'">로그아웃</button>&nbsp;
-	</p>	
+		<c:if test="${pageDTO.hasBoard() }">
+			<c:if test="${pageDTO.startPage > 10 }">
+				<button type="button" onclick="location.href='/ccs/boardSelect.do?page=${pageDTO.startPage - 10}'">이전</button>&nbsp;
+			</c:if>	
+			<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+				<button type="button" onclick="location.href='/ccs/boardSelect.do?page=${pNo}'">${pNo }</button>&nbsp;
+			</c:forEach>	
+			<c:if test="${pageDTO.endPage < pageDTO.totalPages }">
+				<button type="button" onclick="location.href='/ccs/boardSelect.do?page=${pageDTO.startPage + 10}'">다음</button>&nbsp;
+			</c:if>	
+		</c:if>
+	</p>
+	<button type="button" onclick="location.href='http://localhost:8181/ccs/board/board_write.jsp'">새 글 쓰기</button>&nbsp;
+	<button type="button" onclick="location.href='/ccs/logout.do'">로그아웃</button>&nbsp;
 </body>
 </html>
