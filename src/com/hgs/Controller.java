@@ -134,12 +134,6 @@ public class Controller extends HttpServlet {
 			bService.execute(request, response);
 			url = "board.do";
 		}
-		// 사원 리스트
-		else if(uri.equals("/ccs/member.do")) {
-			uService = new MemberPagingService();
-			uService.execute(request, response);
-			url = "member_list.jsp";
-		}
 		// 출/퇴근
 		else if(uri.equals("/ccs/commute.do")) {
 			cService = new WriteCommuteService();
@@ -156,7 +150,23 @@ public class Controller extends HttpServlet {
 		else if(uri.equals("/ccs/approval_proc.do")) {
 			aService = new ApproveWriteService();
 			aService.execute(request, response);
-			url = "approval.do";
+			url = "approval.do?page=1";
+		}
+		// 관리자 창
+		else if(uri.equals("/ccs/admin.do")) {
+			url = "/admin/admin.jsp";
+		}
+		// 관리자 전용 사원 리스트
+		else if(uri.equals("/ccs/member.do")) {
+			uService = new MemberPagingService();
+			uService.execute(request, response);
+			url = "/admin/member_list.jsp";
+		}
+		// 관지라 전용 결제 서류
+		else if(uri.equals("/ccs/adminapproval.do")) {
+			//uService = new ();
+			//uService.execute(request, response);
+			url = "/admin/approval.jsp";
 		}
 		else {
 			url = "login.jsp";

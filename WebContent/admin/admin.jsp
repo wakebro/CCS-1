@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보</title>
+<title>게시판</title>
 </head>
 <body>
 	<h1>어서오세요, ${userInfo.name }님</h1>
@@ -24,32 +24,12 @@
 	</table>
 	<br>
 	<hr>
-	<h2>회원정보 창</h2>
-	<table border="1">
-		<tr>
-			<th>이름</th>
-			<td>${userInfo.name }</td>
-		</tr>
-		<tr>
-			<th>사번</th>
-			<td>${userInfo.no }</td>
-		</tr>
-		<tr>
-			<th>부서</th>
-			<td>${userDept }</td>
-		</tr>
-		<tr>
-			<th>전화번호</th>
-			<td>${userInfo.phone }</td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td>${userInfo.email }</td>
-		</tr>
-		<tr>
-			<td colspan="2" ><a href="/ccs/update.do"><input type="submit" value="회원정보 수정" style="width: 100%"></a>
-		</tr>
-		
-	</table>
+	<br>
+	<a href="/ccs/member.do?page=1">
+		<input type="button" value="직원 목록">
+	</a>
+	<a href="/ccs/adminapproval.do">
+		<input type="button" value="결제 서류">
+	</a>
 </body>
 </html>

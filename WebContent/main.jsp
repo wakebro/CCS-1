@@ -18,7 +18,7 @@
 			<td><a href="/ccs/approval.do"><input type="submit" value="결재창"></a></td>
 			<c:set var="dept" value="${admin }"></c:set>
 			<c:if test="${dept eq '관리자' }">
-				<td><a href="/ccs/member.do?page=1"><input type="submit" value="직원목록"></a></td>
+				<td><a href="/ccs/admin.do"><input type="submit" value="관리자창"></a></td>
 			</c:if>
 		</tr>
 	</table>

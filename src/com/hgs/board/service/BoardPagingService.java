@@ -29,7 +29,6 @@ public class BoardPagingService implements IBoardService {
 		int total = dao.getBoardCount();
 		BoardPageDTO pageDTO = new BoardPageDTO(total, page, boardList); 
 		
-		// 포워딩을 위한 적재
 		request.setAttribute("pageDTO", pageDTO);
 	}
 }

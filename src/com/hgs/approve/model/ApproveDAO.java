@@ -66,17 +66,18 @@ public class ApproveDAO {
 		}
 	}
 	// 자기 결재 기록
-	public List<ApproveVO> getMyApprove(int m_no){
+	public List<ApproveVO> getMyApprove(int m_no, int page){
 		List<ApproveVO> approveList = new ArrayList<ApproveVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM approval WHERE m_no=? ORDER BY a_no DESC LIMIT 0, 10";
+		String sql = "SELECT * FROM approval WHERE m_no=? ORDER BY a_no DESC LIMIT ?, 10";
 		
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, m_no);
+			pstmt.setInt(2, page);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -107,5 +108,119 @@ public class ApproveDAO {
 			}
 		}
 		return approveList;
+	}
+	// 자기 결제 전체 수
+	public int getMyTotalCount(int m_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) count FROM approval WHERE m_no=?";
+		int total = 0;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, m_no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				total = rs.getInt("count");
+			
+		} catch (SQLException e) {
+			System.out.println("에러 : " + e);
+		} finally {
+			try{
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(con != null && !con.isClosed()){
+					con.close();
+				}
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return total;
+	}
+	// 전체 결재 기록
+	public List<ApproveVO> getAllApprove(int page){
+		List<ApproveVO> approveList = new ArrayList<ApproveVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM approval ORDER BY a_no DESC LIMIT ?, 10";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, page);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ApproveVO list = new ApproveVO();
+				list.setA_no(rs.getInt("a_no"));
+				list.setA_category(rs.getString("a_category"));
+				list.setD_name(rs.getString("d_name"));
+				list.setM_no(rs.getInt("m_no"));
+				list.setM_name(rs.getString("m_name"));
+				list.setA_reason(rs.getString("a_reason"));
+				list.setA_start(rs.getTimestamp("a_start"));
+				list.setA_end(rs.getTimestamp("a_end"));
+				list.setA_start_(list.getA_start());
+				list.setA_end_(list.getA_end());
+				list.setA_head(rs.getString("a_head"));
+				list.setA_status(rs.getString("a_status"));
+				approveList.add(list);
+			}
+			return approveList;
+		} catch (SQLException e) {
+			System.out.println("에러 : " + e);
+		} finally {
+			try{
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(con != null && !con.isClosed()){
+					con.close();
+				}
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return approveList;
+	}
+	// 자기 결제 전체 수
+	public int getAllTotalCount() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) count FROM approval";
+		int total = 0;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				total = rs.getInt("count");
+			
+		} catch (SQLException e) {
+			System.out.println("에러 : " + e);
+		} finally {
+			try{
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(con != null && !con.isClosed()){
+					con.close();
+				}
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return total;
 	}
 }

@@ -22,52 +22,39 @@
 			</c:if>
 		</tr>
 	</table>
-	<br>
-	<hr>
-	<h2>결재창</h2>
-	<form action="approval_proc.do" method="post">
-		<table border="1">
-			<tr>
-				<th style="width: 90px">종류</th>
-				<th style="width: 130px">발생일</th>
-				<th style="width: 130px">만료일</th>
-				<th style="width: 150px">메모</th>
-			</tr>
-			<tr>
-				<td>
-					<select name="a_category" style="width: 100%">
-						<c:forEach var="list" items="${categoryList}">
-							<option value="${list.cate_name }">${list.cate_name }</option>
-						</c:forEach>
-					</select>
-				</td>
-				<td><input type="date" name="a_start"></td>
-				<td><input type="date" name="a_end"></td>
-				<td><input type="text" name="a_reason"></td>
-				<td><input type="submit" value="요청">
-			</tr>
-		</table>
-	</form>
-	<br>
-	<hr>
-	<h2>요청 기록</h2>
+	<br><hr><br>
+	<a href="/ccs/member.do?page=1">
+		<input type="button" value="직원 목록">
+	</a>
+	<a href="/ccs/adminapproval.do">
+		<input type="button" value="결제 서류">
+	</a>
+	<h2>결재 내용</h2>
 	<table border="1">
 		<tr>
-			<th style="width: 90px">상태</th>
+			<th style="width: 90px">No.</th>
 			<th style="width: 90px">종류</th>
+			<th style="width: 90px">소속</th>
+			<th style="width: 90px">사번</th>
+			<th style="width: 130px">이름</th>
+			<th style="width: 130px">메모</th>
 			<th style="width: 130px">발생일</th>
-			<th style="width: 130px">만료일</th>
-			<th style="width: 150px">메모</th>
+			<th style="width: 150px">만료일</th>
 			<th style="width: 90px">결제자</th>
+			<th style="width: 90px">상태</th>
 		</tr>
 		<c:forEach var="list" items="${approveDTO.approveList }">
 			<tr>
-				<td>${list.a_status }</td>
+				<td>${list.a_no }</td>
 				<td>${list.a_category }</td>
+				<td>${list.d_name}</td>
+				<td>${list.m_no}</td>
+				<td>${list.m_name}</td>
+				<td>${list.a_reason }</td>
 				<td>${list.a_start_ }</td>
 				<td>${list.a_end_ }</td>
-				<td>${list.a_reason }</td>
 				<td>${list.a_head }</td>
+				<td>${list.a_status }</td>
 			</tr>
 		</c:forEach>
 			<tr>
