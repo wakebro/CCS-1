@@ -32,6 +32,7 @@
 		</tr>
 	</table>
 	<p>
+		<!-- 자신이 올린 게시물만 수정과 삭제 버튼이 보이게 하는 로직 -->
 		<c:if test="${ writer == 1}"> 	
 			<form style='display:inline' action="/ccs/boardUpdate.do" method="post">
 				<input type="hidden" value="${board.b_no }" name="b_no" />
