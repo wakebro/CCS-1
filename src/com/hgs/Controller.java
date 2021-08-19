@@ -47,7 +47,7 @@ public class Controller extends HttpServlet {
 		if(uri.equals("/ccs/login_proc.do")) {
 			uService = new LoginService();
 			uService.execute(request, response);
-			url = "main.jsp";
+			url = "/main.do?page=1";
 		} 
 		// 로그아웃
 		else if (uri.equals("/ccs/logout.do")) {
@@ -142,7 +142,7 @@ public class Controller extends HttpServlet {
 		else if(uri.equals("/ccs/commute.do")) {
 			cService = new WriteCommuteService();
 			cService.execute(request, response);
-			url = "main.jsp";
+			url = "/main.do?page=1";
 		}
 		else {
 			url = "login.jsp";

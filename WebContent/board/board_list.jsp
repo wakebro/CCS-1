@@ -51,7 +51,7 @@
 					
 					<%-- 뒤로가기 버튼을 표시할지 말지 결정하는 부분 --%>
 						<c:if test="${pageDTO.startPage > 10 }">
-							<a href="/ccs/board.do?page=${pageDTO.startPage - 10}">
+							<a href="board.do?page=${pageDTO.startPage - 10}">
 								<input type="button" value="이전">			
 							</a>
 						</c:if>

@@ -27,7 +27,6 @@ public class MemberPagingService implements UService{
 		int total = dao.getUserCount();
 		
 		UserPageDTO userPage = new UserPageDTO(total, page, userList); 
-		System.out.println(userPage);
 		
 		request.setAttribute("userPage", userPage);
 	}

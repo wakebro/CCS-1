@@ -1,14 +1,10 @@
 package com.hgs.user.service;
 
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.hgs.commute.model.CommuteDAO;
-import com.hgs.commute.model.CommuteVO;
 import com.hgs.user.model.UserDAO;
 import com.hgs.user.model.UserVO;
 
@@ -51,20 +47,10 @@ public class LoginService implements UService {
 				session.setAttribute("admin", userInfo.getDept());
 			}
 			
-			// 메인화면 출력 내용
-			CommuteDAO cDao = CommuteDAO.getInstance();
-			// 출퇴근 기록지
-			List<CommuteVO> commuteList = cDao.bringDate(userInfo.getNo());
-			// 최신 출퇴근 기록
-			CommuteVO lastestDate = cDao.bringLastestDate(userInfo.getNo());
-
 			// 세션 생성
 			session.setAttribute("userInfo", userInfo);
 			session.setAttribute("session_id", id);
 			session.setAttribute("userDept", userDept);
-			session.setAttribute("commuteList", commuteList);
-			session.setAttribute("lastestDate", lastestDate);
-			
 		}
 	}
 }

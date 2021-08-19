@@ -29,16 +29,17 @@ public class CommuteDAO {
 	}
 	
 	// 출퇴근 전체 기록 확인
-	public List<CommuteVO> bringDate(int m_no) {
+	public List<CommuteVO> bringDate(int m_no, int page) {
+		List<CommuteVO> resultList = new ArrayList<CommuteVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<CommuteVO> resultList = new ArrayList<CommuteVO>();
-		String sql = "SELECT * FROM commute WHERE m_no = ? ORDER BY c_no DESC";
+		String sql = "SELECT * FROM commute WHERE m_no = ? ORDER BY c_no DESC LIMIT ?, 5";
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, m_no);
+			pstmt.setInt(2, page);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -69,6 +70,43 @@ public class CommuteDAO {
 			}
 		}
 		return resultList;
+	}
+	// 출퇴근 기록 개수
+	public int getCommuteCount (int m_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		String sql = "SELECT COUNT(*) count FROM commute WHERE m_no = ?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, m_no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+			return count;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
 	}
 	// 최신 출퇴근 기록
 	public CommuteVO bringLastestDate(int m_no) {

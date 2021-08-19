@@ -327,7 +327,7 @@ public class BoardDAO {
 				e.printStackTrace();
 			}
 		}
-		return 0;
+		return cnt;
 	}// end getBoardCount
 }
 

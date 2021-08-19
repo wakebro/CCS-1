@@ -52,6 +52,25 @@
 				<td>${list.leave}</td>
 			</tr>
 			</c:forEach>
+			<tr>
+				<td colspan="3" align="center">
+					<c:if test="${commutePageDTO.hasCommute() }">
+						<c:if test="${commutePageDTO.startPage > 10 }">
+							<a href="/ccs/main.do?page=${commutePageDTO.startPage-10 }">
+						 		<input type="button" value="이전">
+						 	</a>
+						</c:if>
+						<c:forEach var="pNo" begin="${commutePageDTO.startPage }" end="${commutePageDTO.endPage }">
+							<a href="main.do?page=${pNo }">${pNo }</a>
+						</c:forEach>
+						<c:if test="${commutePageDTO.endPage != commutePageDTO.totalPage }">
+							<a href="/ccs/main.do?page=${commutePageDTO.startPage + 10 }">
+								<input type="button" value="다음">
+							</a>							
+						</c:if>						 
+					</c:if>
+				</td>
+			</tr>
 		</table>
 </body>
 </html>
