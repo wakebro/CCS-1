@@ -14,10 +14,10 @@ public class BoardDeleteService implements IBoardService{
 		String idSession = (String)session.getAttribute("session_id");
 		
 		if(idSession != null) {
-			String bId = request.getParameter("bId");
+			String b_no = request.getParameter("b_no");
 			BoardDAO dao = BoardDAO.getInstance();
 			
-			int resultcode = dao.delete(bId);
+			int resultcode = dao.delete(b_no);
 			if (resultcode == 1) {
 				System.out.println("글 삭제 성공");
 			} else if(resultcode == 0) {
@@ -25,7 +25,7 @@ public class BoardDeleteService implements IBoardService{
 			}
 		} else {
 			try {
-				RequestDispatcher dp = request.getRequestDispatcher("/04-user/user_login_form.jsp");
+				RequestDispatcher dp = request.getRequestDispatcher("login.jsp");
 				dp.forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();

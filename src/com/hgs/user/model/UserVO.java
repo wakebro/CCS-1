@@ -6,6 +6,7 @@ public class UserVO {
 	private String id;
 	private String pw;
 	private int dept_no;
+	private String dept;
 	private String phone;
 	private String email;
 	
@@ -62,6 +63,15 @@ public class UserVO {
 	public void setDept_no(int dept_no) {
 		this.dept_no = dept_no;
 	}
+	
+
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
 
 	public String getPhone() {
 		return phone;
@@ -81,9 +91,8 @@ public class UserVO {
 
 	@Override
 	public String toString() {
-		return "UserVO [name=" + name + ", no=" + no + ", id=" + id + ", pw=" + pw + ", dept_no=" + dept_no + ", phone="
-				+ phone + ", email=" + email + "]";
+		return "UserVO [name=" + name + ", no=" + no + ", id=" + id + ", pw=" + pw + ", dept_no=" + dept_no + ", dept="
+				+ dept + ", phone=" + phone + ", email=" + email + "]";
 	}
-	
 	
 }

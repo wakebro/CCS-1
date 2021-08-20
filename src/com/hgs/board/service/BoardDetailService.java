@@ -20,12 +20,10 @@ public class BoardDetailService implements IBoardService{
 				response.setContentType("text/html; charset=utf-8");
 	
 				String b_no = request.getParameter("b_no");
-				System.out.println(b_no);
 				
 				BoardDAO dao = BoardDAO.getInstance();
 				
-				// DAO에 글 번호를 넘겨 글 조회수 상승
-//				dao.upHit(b_title);
+				dao.upView(b_no);
 				
 				BoardVO content = dao.getBoardDetail(b_no);
 				System.out.println(content);

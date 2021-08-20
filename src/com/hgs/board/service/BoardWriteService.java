@@ -33,10 +33,6 @@ public class BoardWriteService implements IBoardService{
 				String bContent = request.getParameter("b_content");
 				String mid = request.getParameter("m_id");
 				
-				System.out.println(bTitle);
-				System.out.println(bContent);
-				System.out.println(mid);
-				
 				BoardVO board = new BoardVO();
 				board.setb_title(bTitle);
 				board.setb_content(bContent);

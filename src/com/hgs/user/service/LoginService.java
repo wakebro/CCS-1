@@ -32,6 +32,7 @@ public class LoginService implements UService {
 			userInfo = dao.login(user);
 			String userDept = dao.getUserDept(userInfo.getDept_no());
 			
+			// 로그인
 			if(userInfo.getId() == null) {
 				try {
 					session.invalidate();
@@ -41,17 +42,15 @@ public class LoginService implements UService {
 					e.printStackTrace();
 				}
 			}
-			System.out.println(user.getDept_no());
 			
 			if(userInfo.getDept_no()==1000) {
-				session.setAttribute("admin", userDept);
-				System.out.println("경영지원");
-				
+				session.setAttribute("admin", userInfo.getDept());
 			}
-			session.setAttribute("userInfo", userInfo);
-			session.setAttribute("userDept", userDept);
-			session.setAttribute("session_id", id);
 			
+			// 세션 생성
+			session.setAttribute("userInfo", userInfo);
+			session.setAttribute("session_id", id);
+			session.setAttribute("userDept", userDept);
 		}
 	}
 }

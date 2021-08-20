@@ -25,7 +25,8 @@
 			<tr>
 				<th>부서</th>
 				<td>
-					<select name="join_dept" style="width: 100%"><c:forEach var="dept" items="${deptlist}">
+					<select name="join_dept" style="width: 100%">
+					<c:forEach var="dept" items="${deptlist}">
 						<option value=${dept.dept_no }>${dept.dept_name}</option>
 					</c:forEach></select>
 				</td>

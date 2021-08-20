@@ -11,18 +11,16 @@ public class BoardUpdateService implements IBoardService{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		String idSession = (String)session.getAttribute("sid");
+		String idSession = (String)session.getAttribute("session_id");
 		
 		if(idSession != null) {
 		
-			// DAO와 VO 생성
 			BoardDAO dao = BoardDAO.getInstance();
 			BoardVO board = new BoardVO();
 			
-			// VO setter로 저장
-			board.setbId((int)Integer.parseInt(request.getParameter("bId")));
-			board.setbTitle(request.getParameter("bTitle"));
-			board.setbContent(request.getParameter("bContent"));
+			board.setb_no((int)Integer.parseInt(request.getParameter("b_no")));
+			board.setb_title(request.getParameter("b_title"));
+			board.setb_content(request.getParameter("b_content"));
 			
 			// DAO의 update 호출
 			int resultcode = dao.update(board);
