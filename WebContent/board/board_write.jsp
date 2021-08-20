@@ -22,7 +22,7 @@
 			</tr>
 		</table>
 		<p>
-			<button type="button" onclick="location.href='/ccs/boardSelect.do'">취소</button>&nbsp;
+			<button type="button" onclick="location.href='/ccs/board.do'">취소</button>&nbsp;
 			<input type="submit" value="등록">&nbsp;
 		</p>		
 	</form>

@@ -14,7 +14,7 @@
 		<tr>
 			<td><a href="/ccs/userinfo.do"><input type="submit" value="내 정보"></a></td>
 			<td><a href="#"><input type="submit" value="출/퇴근"></a></td>
-			<td><a href="/ccs/boardSelect.do"><input type="submit" value="게시판"></a></td>
+			<td><a href="/ccs/board.do"><input type="submit" value="게시판"></a></td>
 	</table>
 </body>
 </html>

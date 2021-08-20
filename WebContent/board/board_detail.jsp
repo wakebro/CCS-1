@@ -44,7 +44,7 @@
 				<input type="submit" value="삭제하기" />
 			</form>&nbsp;
 		</c:if>
-		<button type="button" onclick="location.href='/ccs/boardSelect.do'">리스트로 돌아가기</button>&nbsp;
+		<button type="button" onclick="location.href='/ccs/board.do'">리스트로 돌아가기</button>&nbsp;
 	</p>
 </body>
 </html>
