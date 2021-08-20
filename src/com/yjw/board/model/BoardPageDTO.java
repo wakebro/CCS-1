@@ -11,7 +11,7 @@ public class BoardPageDTO {
 	private int startPage;  // 시작 페이지 번호
 	private int endPage;  // 끝 페이지 번호 
 	
-	
+	// 글 전체 갯수, 현재 페이지, 페이징된 글 목록을 받아서 가공해 나머지 정보들을 얻어냄
 	public BoardPageDTO(int total, int currentPage, List<BoardVO> boardList) {
 		this.total = total;
 		this.currentPage = currentPage;
