@@ -37,7 +37,7 @@ public class BoardPagingService implements InterBoardService{
 		BoardDAO dao = BoardDAO.getInstance();
 		
 		// 현재 페이지의 글 모두 가져오기 
-		List<BoardVO> boardList = dao.getPageList((page - 1) * 10);
+		List<BoardVO> boardList = dao.getBoardList((page - 1) * 10);
 		System.out.println("페이지 글들 : " + boardList);
 		
 		int totalNum = dao.getBoardTotal();
