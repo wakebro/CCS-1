@@ -26,6 +26,7 @@ public class BoardDetailService implements IBoardService{
 				dao.upView(b_no);
 				
 				BoardVO content = dao.getBoardDetail(b_no);
+				System.out.println(content);
 				request.setAttribute("content", content);
 				
 			} catch (Exception e) {

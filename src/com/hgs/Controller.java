@@ -107,7 +107,7 @@ public class Controller extends HttpServlet {
 		else if (uri.contentEquals("/ccs/write_proc.do")) {
 			bService = new BoardWriteService();
 			bService.execute(request, response);
-			url = "board.do";
+			url = "/board.do";
 		}
 		// 게시판 글 자세히
 		else if (uri.contentEquals("/ccs/boarddetail.do")) {
@@ -115,6 +115,7 @@ public class Controller extends HttpServlet {
 			bService.execute(request, response);
 			url = "/board/board_detail.jsp";
 		}
+
 		// 게시판 글 수정_폼
 		else if(uri.equals("/ccs/boardupdateform.do")) {
 			bService = new BoardDetailService();
@@ -132,7 +133,7 @@ public class Controller extends HttpServlet {
 		else if(uri.equals("/ccs/boarddelete.do")) {
 			bService = new BoardDeleteService();
 			bService.execute(request, response);
-			url = "board.do";
+			url = "/board/board_detail.jsp";
 		}
 		// 출/퇴근
 		else if(uri.equals("/ccs/commute.do")) {
@@ -162,7 +163,7 @@ public class Controller extends HttpServlet {
 			uService.execute(request, response);
 			url = "/admin/member_list.jsp";
 		}
-		// 관지라 전용 결제 서류
+		// 관 전용 결제 서류
 		else if(uri.equals("/ccs/adminapproval.do")) {
 			//uService = new ();
 			//uService.execute(request, response);
