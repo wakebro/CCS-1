@@ -76,53 +76,6 @@ public class BoardDAO {
 	// END writeBoard
 	
 	
-	public List<BoardVO> getBoardList() {
-		
-		List<BoardVO> boardList = new ArrayList<>();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = "SELECT * FROM board ORDER BY b_no DESC";
-		
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				BoardVO board = new BoardVO();
-				board.setB_no(rs.getInt("b_no"));
-				board.setM_id(rs.getString("m_id"));
-				board.setB_title(rs.getString("b_title"));
-				board.setB_content(rs.getString("b_content"));
-				board.setB_date(rs.getTimestamp("b_date"));
-				board.setB_view(rs.getInt("b_view"));
-				
-				boardList.add(board);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(con!=null && !con.isClosed()) {
-					con.close();
-				}
-				if(pstmt!=null && !pstmt.isClosed()) {
-					pstmt.close();
-				}
-				if(rs!=null && !rs.isClosed()) {
-					rs.close();
-				}
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return boardList;
-	}  
-	// END getBoardList
-	
-	
 	public BoardVO getBoardDetail(String b_no) {
 		BoardVO board = new BoardVO();
 		Connection con = null;
