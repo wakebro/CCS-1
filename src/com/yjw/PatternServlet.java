@@ -127,10 +127,10 @@ public class PatternServlet extends HttpServlet {
 			System.out.println("글쓰기를 요청합니다.");
 			ibs = new BoardCreateService();
 			ibs.execute(request, response);
-			url = "/boardSelect.do";
+			url = "/board.do";
 		} 
 		// 게시판 목록 조회
-		else if(uri.equals("/ccs/boardSelect.do")) {
+		else if(uri.equals("/ccs/board.do")) {
 			System.out.println("게시판 페이지로 이동합니다.");
 			ibs = new BoardPagingService();
 			ibs.execute(request, response);
@@ -162,7 +162,7 @@ public class PatternServlet extends HttpServlet {
 			System.out.println("글 삭제 페이지로 이동합니다.");
 			ibs = new BoardDeleteService();
 			ibs.execute(request, response);
-			url="/boardSelect.do";
+			url="/board.do";
 		} 
 		else {
 			out.print("잘못된 패턴입니다 ...");
