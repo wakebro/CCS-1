@@ -8,7 +8,12 @@
 <title>CCS - Company Commute System</title>
 </head>
 <body>
-	<h2>CCS</h2>
+	<h2><a href="/ccs/board.do">CCS</a></h2>
+	<form action="/ccs/boardSearch.do" method="post">
+		<input type="text" name="keyword" placeholder="검색어"/>
+		<input class="btn btn-search" type="submit" value="검색"/> 
+	</form><br>
+	
 	<table border="1">
 		<thead>
 			<tr>
