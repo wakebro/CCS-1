@@ -41,9 +41,5 @@ public class BoardDeleteService implements InterBoardService {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
 	}
-
 }
