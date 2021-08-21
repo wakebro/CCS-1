@@ -43,6 +43,6 @@ public class BoardViewService implements InterBoardService{
 		BoardPageDTO pageDTO = new BoardPageDTO(totalNum, page, boardList); 
 		
 		request.setAttribute("boardList", boardList);
-		request.setAttribute("PageDTO", pageDTO);
+		request.setAttribute("pageDTO", pageDTO);
 	}
 }
