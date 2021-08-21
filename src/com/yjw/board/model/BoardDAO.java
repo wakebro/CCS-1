@@ -318,7 +318,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT * FROM board WHERE b_title LIKE ? ORDER BY b_no DESC LIMIT ?, 10";
+		String sql = "SELECT * FROM board WHERE b_title LIKE ? ORDER BY b_view DESC LIMIT ?, 10";
 		
 		try {
 			con = ds.getConnection();
@@ -368,11 +368,12 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT * FROM board ORDER BY b_view DESC"; 
+		String sql = "SELECT * FROM board ORDER BY b_view DESC LIMIT ?, 10"; 
 		
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pageNum);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
