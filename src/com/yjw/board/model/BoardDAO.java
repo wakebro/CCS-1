@@ -361,6 +361,46 @@ public class BoardDAO {
 	// END getSearchPage
 	
 	
+	public int getSearchTotal(String keyword) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int totalNum = 0;
+			
+		String sql = "SELECT COUNT(*) FROM board WHERE b_title LIKE ?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, '%' + keyword + '%');
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				totalNum = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(con!=null && !con.isClosed()){
+					con.close();
+				}
+				if(pstmt!=null && !pstmt.isClosed()){
+					pstmt.close();
+				}
+				if(rs!=null && !rs.isClosed()){
+					rs.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return totalNum;
+	}
+	// END getSearchTotal
+	
+	
 	public List<BoardVO> getViewPage(int pageNum) {
 		
 		List<BoardVO> boardList = new ArrayList<>();
