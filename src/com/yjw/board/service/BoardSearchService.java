@@ -45,7 +45,7 @@ public class BoardSearchService implements InterBoardService{
 			List<BoardVO> boardList = dao.getSearchPage(keyword, (page - 1) * 10);
 			System.out.println("페이지 글들 : " + boardList);
 			
-			int totalNum = dao.getBoardTotal();
+			int totalNum = dao.getSearchTotal(keyword);
 			BoardPageDTO pageDTO = new BoardPageDTO(totalNum, page, boardList);
 			
 			request.setAttribute("boardList", boardList);
