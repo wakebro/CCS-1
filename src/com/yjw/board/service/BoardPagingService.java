@@ -45,5 +45,6 @@ public class BoardPagingService implements InterBoardService{
 		
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("pageDTO", pageDTO);
+		request.setAttribute("boardTotal", totalNum);
 	}
 }
