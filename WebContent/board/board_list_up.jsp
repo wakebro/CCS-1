@@ -10,6 +10,8 @@
 <body>
 	<h2><a href="/ccs/board.do">CCS</a></h2>
 	
+	<a href="/ccs/board.do">최신순</a>&nbsp;
+	
 	<a href="/ccs/boardView.do">조회순</a>&nbsp;
 	
 	<form style='display:inline' action="/ccs/boardSearch.do" method="post">
@@ -40,15 +42,52 @@
 		</tbody>
 	</table>
 	<p>
-		<c:if test="${pageDTO.hasBoard() }">
+		<!--  게시판 메인, 최신순 페이징 버튼 -->
+		<c:if test="${boardTotal > 0}">
 			<c:if test="${pageDTO.startPage > 10 }">
-				<button type="button" onclick="location.href='/ccs/board.do?page=${pageDTO.startPage - 10}'">이전</button>&nbsp;
+				<button type="button" class="btn btn-light" onclick="location.href='/ccs/board.do?page=${pageDTO.startPage - 10}'">이전</button>
 			</c:if>	
 			<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
-				<button type="button" onclick="location.href='/ccs/board.do?page=${pNo}'">${pNo }</button>&nbsp;
+				<button type="button" class="btn btn-light" onclick="location.href='/ccs/board.do?page=${pNo}'">${pNo }</button>
 			</c:forEach>	
 			<c:if test="${pageDTO.endPage < pageDTO.totalPages }">
-				<button type="button" onclick="location.href='/ccs/board.do?page=${pageDTO.startPage + 10}'">다음</button>&nbsp;
+				<button type="button" class="btn btn-light" onclick="location.href='/ccs/board.do?page=${pageDTO.startPage + 10}'">다음</button>
+			</c:if>	
+		</c:if>
+		<!--  게시판 조회순 페이징 버튼 -->
+		<c:if test="${viewTotal > 0}">
+			<c:if test="${pageDTO.startPage > 10 }">
+				<button type="button" class="btn btn-light" onclick="location.href='/ccs/boardView.do?page=${pageDTO.startPage - 10}'">이전</button>
+			</c:if>	
+			<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+				<button type="button" class="btn btn-light" onclick="location.href='/ccs/boardView.do?page=${pNo}'">${pNo }</button>
+			</c:forEach>	
+			<c:if test="${pageDTO.endPage < pageDTO.totalPages }">
+				<button type="button" class="btn btn-light" onclick="location.href='/ccs/boardView.do?page=${pageDTO.startPage + 10}'">다음</button>
+			</c:if>	
+		</c:if>
+		<!-- 게시판 검색 페이징 버튼 -->
+		<c:if test="${searchTotal > 0 }">
+			<c:if test="${pageDTO.startPage > 10 }">
+				<form style='display:inline' action="/ccs/boardSearch.do?page=${pageDTO.startPage - 10}">
+					<input type="hidden" name="keyword" value="${keyword }"/>
+					<input type="hidden" name="page" value="${pageDTO.startPage - 10}"/>
+					<input class="btn btn-light" type="submit" value="이전"/> 
+				</form>
+			</c:if>	
+			<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+				<form style='display:inline' action="/ccs/boardSearch.do?page=${pNo}">
+					<input type="hidden" name="keyword" value="${keyword }"/>
+					<input type="hidden" name="page" value="${pNo}"/>
+					<input class="btn btn-light" type="submit" value="${pNo}"/> 
+				</form>
+			</c:forEach>	
+			<c:if test="${pageDTO.endPage < pageDTO.totalPages }">
+				<form style='display:inline' action="/ccs/boardSearch.do?page=${pageDTO.startPage + 10}">
+					<input type="hidden" name="keyword" value="${keyword }"/>
+					<input type="hidden" name="page" value="${pageDTO.startPage + 10}"/>
+					<input class="btn btn-light" type="submit" value="다음"/> 
+				</form>
 			</c:if>	
 		</c:if>
 	</p>
