@@ -44,5 +44,6 @@ public class BoardViewService implements InterBoardService{
 		
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("pageDTO", pageDTO);
+		request.setAttribute("viewTotal", totalNum);
 	}
 }
