@@ -41,6 +41,8 @@ public class BoardSearchService implements InterBoardService{
 			}
 			
 			BoardDAO dao = BoardDAO.getInstance();
+			System.out.println("입력받은 키워드 : " + keyword);  // 디버깅
+			System.out.println("클릭한 페이지 : " + page);  // 디버깅
 			
 			List<BoardVO> boardList = dao.getSearchPage(keyword, (page - 1) * 10);
 			System.out.println("페이지 글들 : " + boardList);
@@ -50,6 +52,8 @@ public class BoardSearchService implements InterBoardService{
 			
 			request.setAttribute("boardList", boardList);
 			request.setAttribute("pageDTO", pageDTO);
+			request.setAttribute("searchTotal", totalNum);
+			request.setAttribute("keyword", keyword);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
