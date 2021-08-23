@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+ crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>CCS - Company Commute System</title>
 </head>
@@ -16,10 +19,10 @@
 	
 	<form style='display:inline' action="/ccs/boardSearch.do" method="post">
 		<input type="text" name="keyword" placeholder="검색어"/>
-		<input class="btn btn-search" type="submit" value="검색"/> 
+		<input class="btn btn-success" type="submit" value="검색"/> 
 	</form><br></br>
 	
-	<table border="1">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>글 번호</th>
