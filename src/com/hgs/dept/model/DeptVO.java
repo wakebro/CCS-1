@@ -8,7 +8,10 @@ public class DeptVO {
 	}
 
 	public DeptVO(int dept_no, String dept_name) {
+<<<<<<< HEAD
 		super();
+=======
+>>>>>>> parent of 05206a4 (병합하기 전 세팅 yjw)
 		this.dept_no = dept_no;
 		this.dept_name = dept_name;
 	}
