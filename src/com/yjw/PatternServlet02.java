@@ -32,10 +32,10 @@ import com.yjw.board.service.InterBoardService;
  * Servlet implementation class PatternServlet.
  */
 @WebServlet("*.do")
-public class PatternServlet extends HttpServlet {
+public class PatternServlet02 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public PatternServlet() {
+    public PatternServlet02() {
         super();
         System.out.println("확장자 패턴 생성");
     }
