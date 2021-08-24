@@ -13,10 +13,10 @@ public class AdminApproveDetail implements AService{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("userInfo") == null) {
+		if(session.getAttribute("userInfo") == null || session.getAttribute("dept") == null) {
 			try {
 				session.invalidate();
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
 				rd.forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();

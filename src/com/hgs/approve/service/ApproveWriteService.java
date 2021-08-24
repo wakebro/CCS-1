@@ -20,7 +20,7 @@ public class ApproveWriteService implements AService {
 		if(session.getAttribute("userInfo") == null) {
 			try {
 				session.invalidate();
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
 				rd.forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();

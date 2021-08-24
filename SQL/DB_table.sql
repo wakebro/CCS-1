@@ -29,12 +29,15 @@ CREATE TABLE commute (
      clock_in_time VARCHAR(20),
     FOREIGN KEY(m_no) REFERENCES member(m_no)
 );
+INSERT INTO commute (m_name, clock_out_time, clock_in_time) VALUES('기하', '20210823193018', '20210823191906');
+
 ALTER TABLE commute DROP FOREIGN KEY commute_ibfk_1;
 ALTER TABLE commute ADD CONSTRAINT FK_1 FOREIGN KEY(m_no) REFERENCES member(m_no);
 ALTER TABLE commute MODIFY attendance VARCHAR(20);
 ALTER TABLE commute CHANGE leave_work clock_out_time VARCHAR(20);
 ALTER TABLE commute CHANGE attendance clock_in_time VARCHAR(20);
 RENAME TABLE commute TO commute_bak;
+DELETE FROM commute;
 
 CREATE TABLE board (
 	b_no int auto_increment PRIMARY KEY,

@@ -3,7 +3,6 @@ package com.wys.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,15 +98,16 @@ public class InOutDAO {
 			// 세션 사원번호가 들어가야함
 			String sql = "SELECT m_no, m_name, STR_TO_DATE(clock_in_time, '%Y%m%d%H%i%s') AS clock_in_time, "
 					+ "STR_TO_DATE(clock_out_time, '%Y%m%d%H%i%s') AS clock_out_time "
-					+ "FROM commute "
-					+ "ORDER BY clock_in_time "
-					+ "Limit ?, 5 "
+					+ "FROM commute WHERE m_no=? "
+					+ "ORDER BY clock_in_time DESC "
+					+ "LIMIT ?, 5"
 					;		
 			try {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 
-				pstmt.setInt(1, pageNum);
+				pstmt.setInt(1, inOutVO.getM_no());
+				pstmt.setInt(2, pageNum);
 
 				rs = pstmt.executeQuery();
 				

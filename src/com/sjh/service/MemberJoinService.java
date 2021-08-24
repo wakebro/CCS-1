@@ -10,7 +10,7 @@ public class MemberJoinService implements IMemberService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-try {
+		try {
 			
 			response.setCharacterEncoding("utf-8");
 			request.setCharacterEncoding("utf-8");
@@ -34,9 +34,6 @@ try {
 			member.setM_Email(m_email);
 			System.out.println(member);
 			dao.joinMember(member);
-			
-		
-		
 		}catch(Exception e){
 			e.printStackTrace();
 		}

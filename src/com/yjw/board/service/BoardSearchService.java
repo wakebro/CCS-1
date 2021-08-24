@@ -21,7 +21,7 @@ public class BoardSearchService implements InterBoardService{
 
 		if(idSession == null) {
 			try {
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
 				rd.forward(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();

@@ -18,11 +18,10 @@ public class MemberLoginService implements IMemberService{
 			
 			String m_id = request.getParameter("m_id");
 			String m_pw = request.getParameter("m_pw");
-			MemberVO userInfo = null;
 			
 			if (m_id == null) {
 				try {
-					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
 					rd.forward(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,6 +30,7 @@ public class MemberLoginService implements IMemberService{
 			
 			MemberDAO dao = MemberDAO.getinstance();
 			MemberVO user = new MemberVO();
+			MemberVO userInfo = new MemberVO();
 			UserDAO uDao = UserDAO.getInstace();
 			
 			user.setM_Id(m_id);
@@ -43,7 +43,7 @@ public class MemberLoginService implements IMemberService{
 			if(userInfo.getM_Id() == null) {
 				try {
 					session.invalidate();
-					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
 					rd.forward(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,6 @@ public class MemberLoginService implements IMemberService{
 			if(userInfo.getDept_no()==1000) {
 				session.setAttribute("admin", userInfo.getDept());
 			}
-			
 			// 세션 생성
 			session.setAttribute("session_id", userInfo.getM_Id());
 			session.setAttribute("userInfo", userInfo);

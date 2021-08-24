@@ -9,6 +9,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.hgs.dept.model.DeptVO;
+import com.sjh.model.MemberVO;
 
 public class UserDAO {
 
@@ -134,29 +135,29 @@ public class UserDAO {
 				
 	}
 	// 로그인
-	public UserVO login(UserVO user) {
+	public MemberVO login(MemberVO user) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		UserVO userInfo = new UserVO();
+		MemberVO userInfo = new MemberVO();
 		String sql = "SELECT * from member WHERE m_id=?";
 		
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, user.getId());
+			pstmt.setString(1, user.getM_Id());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(rs.getString("m_pw").equals(user.getPw())) {
-					userInfo.setName(rs.getString("m_name"));
-					userInfo.setNo(rs.getInt("m_no"));
-					userInfo.setId(rs.getString("m_id"));
+				if(rs.getString("m_pw").equals(user.getM_Pw())) {
+					userInfo.setM_Name(rs.getString("m_name"));
+					userInfo.setM_No(rs.getInt("m_no"));
+					userInfo.setM_Id(rs.getString("m_id"));
 					userInfo.setDept_no(rs.getInt("dept_no"));
 					userInfo.setDept(getUserDept(userInfo.getDept_no()));
-					userInfo.setPhone(rs.getString("m_phone"));
-					userInfo.setEmail(rs.getString("m_email"));
+					userInfo.setM_Phone(rs.getString("m_phone"));
+					userInfo.setM_Email(rs.getString("m_email"));
 				}
 			}
 			
@@ -216,7 +217,7 @@ public class UserDAO {
 		return dept;
 	}// end getUserDept
 	// 회원정보 수정
-	public void update(UserVO user) {
+	public void update(MemberVO user) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE member SET m_pw=?, m_phone=?, m_email=?"
@@ -225,10 +226,10 @@ public class UserDAO {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, user.getPw());
-			pstmt.setString(2, user.getPhone());
-			pstmt.setString(3, user.getEmail());
-			pstmt.setString(4, user.getId());
+			pstmt.setString(1, user.getM_Pw());
+			pstmt.setString(2, user.getM_Phone());
+			pstmt.setString(3, user.getM_Email());
+			pstmt.setString(4, user.getM_Id());
 			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

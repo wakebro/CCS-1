@@ -78,7 +78,7 @@ $container-max-widths: (
 			    <th scope="col">사원번호</th>
 			    <th>이름</th>
 				<th>출근시간</th>
-				<th>퇴근시간${commuteListCount }</th>
+				<th>퇴근시간</th>
 			</tr>
 		<c:forEach var="commute" items="${commuteList}" >
 			<tr>
