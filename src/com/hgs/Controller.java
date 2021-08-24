@@ -15,7 +15,7 @@ import com.hgs.approve.service.*;
 import com.hgs.board.service.*;
 import com.hgs.commute.service.*;
 
-@WebServlet("*.do")
+@WebServlet("*.hello")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -165,9 +165,21 @@ public class Controller extends HttpServlet {
 		}
 		// 관 전용 결제 서류
 		else if(uri.equals("/ccs/adminapproval.do")) {
-			//uService = new ();
-			//uService.execute(request, response);
+			aService = new AdminApprovalService();
+			aService.execute(request, response);
 			url = "/admin/approval.jsp";
+		}
+		// 관지라 전용 결제 디테일
+		else if(uri.equals("/ccs/adminapprodetail.do")) {
+			aService = new AdminApproveDetail();
+			aService.execute(request, response);
+			url = "/admin/approval_detail.jsp";
+		}
+		// 관지라 전용 결제 처리
+		else if(uri.equals("/ccs/adminapproconfirm.do")) {
+			aService = new AdminApproveConfirmService();
+			aService.execute(request, response);
+			url = "/adminapproval.do?page=1";
 		}
 		else {
 			url = "login.jsp";

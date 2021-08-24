@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.hgs.approve.model.*;
-import com.hgs.user.model.UserVO;
+import com.sjh.model.MemberVO;
 
 public class Approve implements AService {
 	@Override
@@ -25,7 +25,7 @@ public class Approve implements AService {
 				e.printStackTrace();
 			}
 		}else {
-			UserVO userInfo = (UserVO) session.getAttribute("userInfo");
+			MemberVO userInfo = (MemberVO) session.getAttribute("userInfo");
 			String strpage = request.getParameter("page");
 			int page;
 			if(strpage == null)
@@ -44,8 +44,8 @@ public class Approve implements AService {
 			// 내 결재 요청 기록 불러오기
 			List<ApproveVO> approveList = new ArrayList<ApproveVO>();
 			ApproveDAO aDao = ApproveDAO.getInstance();
-			approveList = aDao.getMyApprove(userInfo.getNo(), (page-1)*10);
-			int total = aDao.getMyTotalCount(userInfo.getNo());
+			approveList = aDao.getMyApprove(userInfo.getM_No(), (page-1)*10);
+			int total = aDao.getMyTotalCount(userInfo.getM_No());
 			ApprovePageDTO approveDTO = new ApprovePageDTO(total, page, approveList);
 			
 			session.setAttribute("approveDTO", approveDTO);

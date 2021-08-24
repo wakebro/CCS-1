@@ -8,7 +8,7 @@
 <title>게시판</title>
 </head>
 <body>
-	<h1>어서오세요, ${userInfo.name }님</h1>
+	<h1>어서오세요, ${userInfo.m_Name }님</h1>
 	<a href="/ccs/logout.do">로그아웃</a>
 	<table border="1">
 		<tr>
@@ -22,13 +22,11 @@
 			</c:if>
 		</tr>
 	</table>
-	<br>
-	<hr>
-	<br>
+	<br><hr><br>
 	<a href="/ccs/member.do?page=1">
 		<input type="button" value="직원 목록">
 	</a>
-	<a href="#">
+	<a href="/ccs/adminapproval.do?page=1">
 		<input type="button" value="결제 서류">
 	</a>
 	<h1>사원 리스트</h1>

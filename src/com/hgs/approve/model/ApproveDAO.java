@@ -190,7 +190,7 @@ public class ApproveDAO {
 		}
 		return approveList;
 	}
-	// 자기 결제 전체 수
+	// 전 사원 결제 신청 수
 	public int getAllTotalCount() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -222,5 +222,81 @@ public class ApproveDAO {
 			}
 		}
 		return total;
+	}
+	// 관리자 전용 결재 내용 확인
+	public ApproveVO getDetailApprove(String a_no) {
+		ApproveVO result = new ApproveVO();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM approval WHERE a_no=?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, a_no);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result.setA_no(rs.getInt("a_no"));
+				result.setA_category(rs.getString("a_category"));
+				result.setA_status(rs.getString("a_status"));
+				result.setA_reason(rs.getString("a_reason"));
+				result.setD_name(rs.getString("d_name"));
+				result.setM_no(rs.getInt("m_no"));
+				result.setM_name(rs.getString("m_name"));
+				result.setA_start(rs.getTimestamp("a_start"));
+				result.setA_end(rs.getTimestamp("a_end"));
+				result.setA_start_(result.getA_start());
+				result.setA_end_(result.getA_end());
+				result.setA_head(rs.getString("a_head"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("에러 : " + e);
+		} finally {
+			try{
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(con != null && !con.isClosed()){
+					con.close();
+				}
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	// 관리자 전용 결재 확인
+	public void confirmApprove(String a_no, String a_status, String a_reason, String a_head) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE approval SET a_status=?, a_reason=?, a_head=? WHERE a_no=?";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, a_status);
+			pstmt.setString(2, a_reason);
+			pstmt.setString(3, a_head);
+			pstmt.setString(4, a_no);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("에러 : " + e);
+		} finally {
+			try{
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(con != null && !con.isClosed()){
+					con.close();
+				}
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 }

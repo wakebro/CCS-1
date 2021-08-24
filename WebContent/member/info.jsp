@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>내 정보</title>
 </head>
 <body>
 	<div class="header">
-	<h1>로그인이 완료되었습니다.</h1>
+		<h1>로그인이 완료되었습니다.</h1>
 		<div class="logo">
 			<div id="logo_hello"><h1>${userInfo.m_Name }님, 환영합니다.</h1></div>
 			<div id="logout"><a href="/ccs/logout.do">로그아웃</a></div>
@@ -27,14 +27,33 @@
 			</c:if>
 		</div>
 	</div>
-	<br>
 	<hr>
-	<br>
-	<a href="/ccs/member.do?page=1">
-		<input type="button" value="직원 목록">
-	</a>
-	<a href="/ccs/adminapproval.do?page=1">
-		<input type="button" value="결제 서류">
-	</a>
+	<h2>회원정보 창</h2>
+	<table border="1">
+		<tr>
+			<th>이름</th>
+			<td>${userInfo.m_Name }</td>
+		</tr>
+		<tr>
+			<th>사번</th>
+			<td>${userInfo.m_No }</td>
+		</tr>
+		<tr>
+			<th>부서</th>
+			<td>${userInfo.dept }</td>
+		</tr>
+		<tr>
+			<th>전화번호</th>
+			<td>${userInfo.m_Phone }</td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td>${userInfo.m_Email }</td>
+		</tr>
+		<tr>
+			<td colspan="2" ><a href="/ccs/update.do"><input type="submit" value="회원정보 수정" style="width: 100%"></a>
+		</tr>
+		
+	</table>
 </body>
 </html>

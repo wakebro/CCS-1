@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD:WebContent/member/member_login_fail.jsp
+   
+=======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+>>>>>>> yjw:WebContent/board/board_detail.jsp
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +15,10 @@ rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5
 <title>CCS - ${board.b_title }</title>
 </head>
 <body>
+<<<<<<< HEAD:WebContent/member/member_login_fail.jsp
+	<h1>로그인에 실패했습니다.</h1>
+	<a href="member_login_form.jsp">로그인창</a>
+=======
 	<table border="1">
 		<tr>	
 			<td>${board.b_no }</td>
@@ -31,7 +39,7 @@ rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5
 			<td>${board.b_title }</td>
 		</tr>
 		<tr>	
-			<td><textarea cols="50" rows="20" readonly="readonly">${board.b_content }</textarea></td>
+			<td><textarea cols="50" rows="20">${board.b_content }</textarea></td>
 		</tr>
 	</table>
 	<p>
@@ -49,5 +57,6 @@ rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5
 		</c:if>
 		<button type="button" onclick="location.href='/ccs/board.do'">리스트로 돌아가기</button>&nbsp;
 	</p>
+>>>>>>> yjw:WebContent/board/board_detail.jsp
 </body>
 </html>

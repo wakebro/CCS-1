@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.hgs.approve.model.ApproveDAO;
 import com.hgs.approve.model.ApproveVO;
-import com.hgs.user.model.UserVO;
+import com.sjh.model.MemberVO;
 
 public class ApproveWriteService implements AService {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -27,7 +27,7 @@ public class ApproveWriteService implements AService {
 			}
 		}else {
 			try {
-			UserVO userInfo = (UserVO)session.getAttribute("userInfo");
+			MemberVO userInfo = (MemberVO)session.getAttribute("userInfo");
 			SimpleDateFormat timestamp_ = new SimpleDateFormat("yyyy-MM-dd");
 				
 			Date D_a_start = timestamp_.parse(request.getParameter("a_start"));
@@ -37,8 +37,8 @@ public class ApproveWriteService implements AService {
 			String a_category = request.getParameter("a_category");
 			String a_reason = request.getParameter("a_reason");
 			String d_name = userInfo.getDept();
-			String m_name = userInfo.getName();
-			int m_no = userInfo.getNo();
+			String m_name = userInfo.getM_Name();
+			int m_no = userInfo.getM_No();
 
 			ApproveVO approve = new ApproveVO();
 			approve.setA_category(a_category);

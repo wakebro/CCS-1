@@ -8,21 +8,25 @@
 <title>결재창</title>
 </head>
 <body>
-	<h1>어서오세요, ${userInfo.name }님</h1>
-	<a href="/ccs/logout.do">로그아웃</a>
-	<table border="1">
-		<tr>
-			<td><a href="/ccs/main.do"><input type="submit" value="메인화면"></a></td>
-			<td><a href="/ccs/board.do?page=1"><input type="submit" value="게시판"></a></td>
-			<td><a href="/ccs/userinfo.do"><input type="submit" value="내 정보"></a></td>
-			<td><a href="/ccs/approval.do"><input type="submit" value="결재창"></a></td>
+	<div class="header">
+		<h1>로그인이 완료되었습니다.</h1>
+		<div class="logo">
+			<div id="logo_hello"><h1>${userInfo.m_Name }님, 환영합니다.</h1></div>
+			<div id="logout"><a href="/ccs/logout.do">로그아웃</a></div>
+		</div>
+	</div>
+	<div class="body">
+		<div class="sider">
+			<a href="/ccs/commute.do"><input type="submit" value="메인화면"></a>
+			<a href="/ccs/board.do?page=1"><input type="submit" value="게시판"></a>
+			<a href="/ccs/userinfo.do"><input type="submit" value="내 정보"></a>
+			<a href="/ccs/approval.do"><input type="submit" value="결재창"></a>
 			<c:set var="dept" value="${admin }"></c:set>
 			<c:if test="${dept eq '관리자' }">
-				<td><a href="/ccs/admin.do"><input type="submit" value="관리자창"></a></td>
+				<a href="/ccs/admin.do"><input type="submit" value="관리자창"></a>
 			</c:if>
-		</tr>
-	</table>
-	<br>
+		</div>
+	</div>
 	<hr>
 	<h2>결재창</h2>
 	<form action="approval_proc.do" method="post">
@@ -43,7 +47,7 @@
 				</td>
 				<td><input type="date" name="a_start"></td>
 				<td><input type="date" name="a_end"></td>
-				<td><input type="text" name="a_reason"></td>
+				<td><textarea name="a_reason" rows="" cols=""></textarea></td>
 				<td><input type="submit" value="요청">
 			</tr>
 		</table>

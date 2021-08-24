@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<div class="header">
-	<h1>로그인이 완료되었습니다.</h1>
+		<h1>로그인이 완료되었습니다.</h1>
 		<div class="logo">
 			<div id="logo_hello"><h1>${userInfo.m_Name }님, 환영합니다.</h1></div>
 			<div id="logout"><a href="/ccs/logout.do">로그아웃</a></div>
@@ -27,14 +27,8 @@
 			</c:if>
 		</div>
 	</div>
-	<br>
-	<hr>
-	<br>
-	<a href="/ccs/member.do?page=1">
-		<input type="button" value="직원 목록">
-	</a>
-	<a href="/ccs/adminapproval.do?page=1">
-		<input type="button" value="결제 서류">
-	</a>
+	
+	
+	
 </body>
 </html>
