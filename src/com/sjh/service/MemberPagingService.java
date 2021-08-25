@@ -20,7 +20,7 @@ public class MemberPagingService implements IMemberService {
 ;		}
 		MemberDAO dao = MemberDAO.getinstance();
 		
-		//  현재 보고 있는 페이지의 전체 글 가져오가
+		//  현재 보고 있는 페이지의 전체 글 가져오기
 		ArrayList<MemberVO> memberList = dao.getPageList((page-1)*10);
 		System.out.println("페이징 글:" + memberList);
 		

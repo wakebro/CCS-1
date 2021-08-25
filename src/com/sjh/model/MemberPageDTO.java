@@ -2,12 +2,12 @@ package com.sjh.model;
 import java.util.ArrayList;
 //import java.util.List;
 public class MemberPageDTO {
-	private int total;  // �쟾泥� �궗�썝 媛쒖닔
-	private int currentPage; // �쁽�옱 蹂닿퀬 �엳�뒗 �럹�엸
+	private int total;  
+	private int currentPage; 
 	private ArrayList<MemberVO> memberList;
-	private int totalPages; // �쟾泥� �럹�씠吏� 媛쒖닔
-	private int startPage; // �떆�옉 �럹�씠吏� 踰덊샇
-	private int endPage; // �쓠 �럹�씠吏� 踰덊샇
+	private int totalPages; 
+	private int startPage; 
+	private int endPage; 
 	
 	public MemberPageDTO(int total, int currentPage,ArrayList<MemberVO> memberList) {
 		this.total = total;

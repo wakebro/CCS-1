@@ -7,10 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import com.sjh.model.MemberDAO;
 
-
-
-
-
 public class MemberDeleteService implements IMemberService{
 
 	@Override
@@ -28,12 +24,12 @@ public class MemberDeleteService implements IMemberService{
 				e.printStackTrace();
 			}
 		} else {
-			// bId ÆÄ¶ó¹ÌÅÍ ¹Þ±â(µðÅ×ÀÏ ÆäÀÌÁö¿¡¼­ post¹æ½ÄÀ¸·Î ³¯·ÁÁØ) ¹Þ±â
+			// bId ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½Þ±ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ postï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½Þ±ï¿½
 			String mId = request.getParameter("mId");
 
-			// DAO»ý¼º
+			// DAOï¿½ï¿½ï¿½ï¿½
 			MemberDAO dao = MemberDAO.getinstance();
-			// delete·ÎÁ÷¿¡ mId ³Ö¾î¼­ ½ÇÇà
+			// deleteï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ mId ï¿½Ö¾î¼­ ï¿½ï¿½ï¿½ï¿½
 			dao.DeleteMember(null, mId);
 		
 		}

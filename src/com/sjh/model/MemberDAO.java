@@ -30,7 +30,7 @@ public class MemberDAO {
 		return dao;
 	}
 	
-	// 회원가입 호직
+	// 회원가입 로직
 	public void joinMember(MemberVO member) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
