@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" 
 	rel="stylesheet" 
 	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" 
@@ -43,13 +44,69 @@ $container-max-widths: (
 	</div>
 	<div class="container-fluid">
 	<h2>출근시 입력창</h2>
+=======
+
+<style type="text/css">
+table.commute {
+  border-collapse: collapse;
+  text-align: center;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin: 20px 10px;
+}
+table.commute th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border: 1px solid #ccc;
+}
+table.commute td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border: 1px solid #ccc;
+}
+table.commute .even {
+  background: #efefef;
+}
+
+</style>
+<meta charset="UTF-8">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<title>출근</title>
+</head>
+<body>
+
+<script>
+
+ 	$(document).ready(function(){
+
+
+ 	});	
+
+	function commute(m_no){
+		alert('환영합니다.' + m_no);
+	}
+
+</script>
+
+<h2>출근시 입력창</h2>
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 
 	<form action="/ccs/doCommute.do" method="post">
 		<div style="border: 1px solid; width: 1485px; height: 100%;">
 			<table style="width: 100%; padding:10% 35%; ">
 				<input type="hidden" id="inTime" name="inTime" value="${inOutVO.getClock_in_time()}">
 				<tr>	
+<<<<<<< HEAD
 					<td>이름 / 부서 : ${userInfo.m_Name } / ${userInfo.dept }
+=======
+					<td>이름 / 부서 : session_name / session dept_nm</td>
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 				</tr>
 				<tr>
 				</tr>
@@ -72,6 +129,7 @@ $container-max-widths: (
 			</table>
 		</div>
 		
+<<<<<<< HEAD
 	<!-- 출결목록 -->
 		<table class="table table-striped">
 			<tr class="even">
@@ -82,10 +140,25 @@ $container-max-widths: (
 			</tr>
 		<c:forEach var="commute" items="${commuteList}" >
 			<tr>
+=======
+		
+		
+		<!-- 출결목록 -->
+			<table class="commute">
+			  <tr class="even">
+			    <th scope="col">사원번호</th>
+			    <th>이름</th>
+				<th>출근시간</th>
+				<th>퇴근시간${commuteListCount }</th>
+			  </tr>
+			<c:forEach var="commute" items="${commuteList}" >
+			  <tr>
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 			    <td>${commute.m_no}</td>
 			    <td>${commute.m_name}</td>
 			    <td>${commute.clock_in_time}</td>
 			    <td>${commute.clock_out_time}</td>
+<<<<<<< HEAD
 			</tr>
 		</c:forEach>
 		</table>
@@ -123,10 +196,39 @@ $container-max-widths: (
 	</li>
 	</ul>
 	</nav>
+=======
+			  </tr>
+			</c:forEach>
+			</table>
+			
+
+<%-- 페이징 버튼 만들기 // 표현할 글이 있는 경우에만 버튼을 표시함--%>
+	<c:if test="${InOutDTO.hasBoard() }">
+<!-- 뒤로 가기(전으로 가기) 버튼 표시할지 판단여부  -->
+	<c:if test="${InOutDTO.startPage > 5}">
+		<a href="/ccs/commute.do?page=${InOutDTO.startPage - 5}">[prev]</a>
+	</c:if>
+	
+	
+<!-- 페이지 번호 5개 묶음을 깔아주는 부분 -->
+	<c:forEach var="pNo" begin="${InOutDTO.startPage}" end="${InOutDTO.endPage}">
+		<a href="/ccs/commute.do?page=${pNo}">[${pNo }]</a>
+	</c:forEach>
+	
+<!-- 다음으로 가기 버튼을 표시할지 말지 결정하는 부분 -->
+	<c:if test="${InOutDTO.endPage < InOutDTO.totalPages}">
+		<a href="/ccs/commute.do?page=${InOutDTO.startPage + 5}">[next]</a>
+	</c:if>
+	
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 	</c:if>
 <!-- 페이징 부분 끝 -->
 			
 	</form>
+<<<<<<< HEAD
 	</div>
+=======
+	
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 </body>
 </html>

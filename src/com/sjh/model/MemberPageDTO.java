@@ -9,6 +9,11 @@ public class MemberPageDTO {
 	private int startPage; // �떆�옉 �럹�씠吏� 踰덊샇
 	private int endPage; // �쓠 �럹�씠吏� 踰덊샇
 	
+<<<<<<< HEAD
+=======
+	// �깮�꽦�옄�뒗 �쟾泥� �궗�썝 媛쒖닔, �쁽�옱 �럹�씠吏�, �럹�씠吏� �맂 湲� 紐⑸줉�쓣 諛쏆븘�꽌 媛�怨듯빐
+	// �굹癒몄� �젙蹂대�� �뼸�뒿�땲�떎.
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 	public MemberPageDTO(int total, int currentPage,ArrayList<MemberVO> memberList) {
 		this.total = total;
 		this.currentPage = currentPage;
@@ -21,14 +26,27 @@ public class MemberPageDTO {
 		}else {
 		this.totalPages = total/5;
 		if(this.total % 5 >0) {
+<<<<<<< HEAD
 			this.totalPages += 1;
 		}
+=======
+			// 留뚯빟 �굹�댋�쓣�븣 5媛몃줈 �뵳�뜙�뼱吏�吏� �븡�쑝硫� 
+			// 留덉�留됱뿉 �럹�씠吏�瑜� �븯�굹 �뜑 異붽��븿
+			this.totalPages += 1;
+		}
+		// �쁽�옱 蹂닿퀬 �엳�뒗 �럹�씠吏� 洹몃９ �떆�옉 踰덊샇 援ы븯湲�
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 		int moVal = this.currentPage % 5;
 		this.startPage = this.currentPage/ 5 * 5+1;
 		
 		if(moVal ==0) {
 			this.startPage -= 5;
 		}
+<<<<<<< HEAD
+=======
+		// �빐�떦 �럹�씠吏� 洹몃９ �걹 踰덊샇
+		endPage = startPage + (10-1);
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 		if(endPage>totalPages) {
 			endPage = totalPages;
 		}
