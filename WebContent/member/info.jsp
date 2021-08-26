@@ -13,12 +13,23 @@
 		padding-top: 20px;
 	}
 	#username{
-		font-weight: bolder;
-		font-size: 500% ;
+		font-family: 'Black Han Sans', sans-serif;
+		font-size: 300% ;
 	}
 	.body{
 		height: 100vh;
 		background-color: rgb(235, 232, 232);
+	}
+	.logo{
+		width: 200px;
+		padding-top: 20px;
+		padding-right: 35px;
+	}
+	.userInfo{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		margin-bottom: 10px;
 	}
 	.sider {
 		height:200px;
@@ -28,17 +39,24 @@
 	}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <body>
 	<div class="container">
 		<header>
 			<div class="row">
 				<div class="col-md-2">
-					<img src="${logo }">
+					<div class="logo row">
+						<img src="../img/logo.png" onerror="this.src='../ccs/img/logo.png'">
+					</div>
 				</div>
-				<div class="col-md-10">
-					<span id="username">${userInfo.m_Name }</span>
-					${userInfo.dept }
-					<a href="/ccs/logout.do">로그아웃</a>
+				<div class="userInfo col-md-9">
+					<div class="row">
+						<div class="col-md-8">
+							<span id="username">${userInfo.m_Name }</span>&nbsp;${userInfo.dept }/<a href="/ccs/logout.do">로그아웃</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</header>
