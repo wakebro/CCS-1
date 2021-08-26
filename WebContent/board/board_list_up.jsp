@@ -146,7 +146,7 @@
 									<c:if test="${pageDTO.startPage > 10 }">
 										<li class="page-item">
 											<button type="button" class="page-link btn btn-light"
-												onclick="location.href='/ccs/boardView.do?page=${pageDTO.startPage - 10}'">이전</button>
+												onclick="location.href='/ccs/boardView.do?page=${pageDTO.startPage - 10}'"><<</button>
 										</li>
 									</c:if>
 									<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
@@ -158,34 +158,33 @@
 									<c:if test="${pageDTO.endPage < pageDTO.totalPages }">
 										<li class="page-item">
 											<button type="button" class="page-link btn btn-light"
-												onclick="location.href='/ccs/boardView.do?page=${pageDTO.startPage + 10}'">다음</button>
+												onclick="location.href='/ccs/boardView.do?page=${pageDTO.startPage + 10}'">>></button>
 										</li>
 									</c:if>
 								</ul>
 							</c:if>
 							<!-- 게시판 검색 페이징 버튼 -->
 							<c:if test="${searchTotal > 0 }">
-								<c:if test="${pageDTO.startPage > 10 }">
-									<form style='display:inline' action="/ccs/boardSearch.do?page=${pageDTO.startPage - 10}">
-										<input type="hidden" name="keyword" value="${keyword }" />
-										<input type="hidden" name="page" value="${pageDTO.startPage - 10}" />
-										<input class="btn btn-light" type="submit" value="이전" />
-									</form>
-								</c:if>
-								<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
-									<form style='display:inline' action="/ccs/boardSearch.do?page=${pNo}">
-										<input type="hidden" name="keyword" value="${keyword }" />
-										<input type="hidden" name="page" value="${pNo}" />
-										<input class="btn btn-light" type="submit" value="${pNo}" />
-									</form>
-								</c:forEach>
-								<c:if test="${pageDTO.endPage < pageDTO.totalPages }">
-									<form style='display:inline' action="/ccs/boardSearch.do?page=${pageDTO.startPage + 10}">
-										<input type="hidden" name="keyword" value="${keyword }" />
-										<input type="hidden" name="page" value="${pageDTO.startPage + 10}" />
-										<input class="btn btn-light" type="submit" value="다음" />
-									</form>
-								</c:if>
+								<ul class="pagination justify-content-center">
+									<c:if test="${pageDTO.startPage > 10 }">
+										<li class="page-item">
+											<button type="button" class="page-link btn btn-light"
+												onclick="location.href='/ccs/boardSearch.do?page=${pageDTO.startPage - 10}&keyword=${keyword }'"><<</button>
+										</li>
+									</c:if>
+									<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+										<li class="page-item">
+											<button type="button" class="page-link btn btn-light"
+												onclick="location.href='/ccs/boardSearch.do?page=${pNo}&keyword=${keyword }'">${pNo}</button>
+										</li>
+									</c:forEach>
+									<c:if test="${pageDTO.endPage < pageDTO.totalPages }">
+										<li class="page-item">
+											<button type="button" class="page-link btn btn-light"
+												onclick="location.href='/ccs/boardSearch.do?page=${pageDTO.startPage + 10}&keyword=${keyword }'">>></button>
+										</li>
+									</c:if>
+								</ul>
 							</c:if>
 						</p>
 					</div>
