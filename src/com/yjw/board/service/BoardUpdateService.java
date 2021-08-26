@@ -19,11 +19,7 @@ public class BoardUpdateService implements InterBoardService{
 
 		if(idSession == null) {
 			try {
-<<<<<<< HEAD
 				RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
-=======
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
->>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 				rd.forward(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();

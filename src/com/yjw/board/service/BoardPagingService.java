@@ -20,16 +20,11 @@ public class BoardPagingService implements InterBoardService{
 
 		if(idSession == null) {
 			try {
-<<<<<<< HEAD
 				RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
-=======
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
->>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 				rd.forward(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-<<<<<<< HEAD
 		}else {
 			String strPage = request.getParameter("page");
 			// 파라미터 값이 없을 때는 1페이지가 기본
@@ -50,28 +45,5 @@ public class BoardPagingService implements InterBoardService{
 			request.setAttribute("pageDTO", pageDTO);
 			request.setAttribute("boardTotal", totalNum);
 		}
-=======
-		}
-
-		String strPage = request.getParameter("page");
-		// 파라미터 값이 없을 때는 1페이지가 기본
-		int page = 1;
-		if(strPage != null) {
-			page = Integer.parseInt(strPage);
-		}
-		
-		BoardDAO dao = BoardDAO.getInstance();
-		
-		// 현재 페이지의 글 모두 가져오기 
-		List<BoardVO> boardList = dao.getBoardList((page - 1) * 10);
-		System.out.println("페이지 글들 : " + boardList);
-		
-		int totalNum = dao.getBoardTotal();
-		BoardPageDTO pageDTO = new BoardPageDTO(totalNum, page, boardList);
-		
-		request.setAttribute("boardList", boardList);
-		request.setAttribute("pageDTO", pageDTO);
-		request.setAttribute("boardTotal", totalNum);
->>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 	}
 }

@@ -1,41 +1,5 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-=======
-<%@page import="com.sjh.model.MemberVO"%>
-<%@page import="com.sjh.model.MemberDAO"%>
-
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-try{
-	request.setCharacterEncoding("utf-8");
-	response.setCharacterEncoding("utf-8");
-	
-	String m_id = request.getParameter("m_id");
-	String m_pw = request.getParameter("m_pw");
-	String m_name = request.getParameter("m_name");
-	String strdept_no=request.getParameter("dept_no");
-	Integer dept_no = (Integer)session.getAttribute(strdept_no);
-	String m_phone = request.getParameter("m_phone");
-	String m_email = request.getParameter("m_email");
-	
-	MemberDAO dao = MemberDAO.getinstance();
-	
-	MemberVO member = new MemberVO();
-	member.setM_Id(m_id);
-	member.setM_Pw(m_pw);
-	member.setM_Name(m_name);
-	member.setDept_no(dept_no);
-	member.setM_Phone(m_phone);
-	member.setM_Email(m_email);
-	dao.joinMember(member);
-}catch(Exception e){
-	e.printStackTrace();
-}
-%>
->>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,11 +30,7 @@ der .c_logo:before{
 <body>
 	<div id = "header"></div>
 	<h1>
-<<<<<<< HEAD
 		<a href="https://www.naver.com" class="p c_logo" id="log.naver">
-=======
-		<a href="https://www.nave.r.com" class="p c_logo" id="log.naver">
->>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 		<span class="blian">CCS</span>
 		</a>
 	</h1>
@@ -88,11 +48,7 @@ der .c_logo:before{
 		<tr>
 			<td>
 			<input type="submit" value="로그인">
-<<<<<<< HEAD
 			<a href="/ccs/join.do">
-=======
-			<a href="members_join_form.jsp">
->>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 			<input type="button" value="회원가입"></a>
 			</td>
 		</tr>
