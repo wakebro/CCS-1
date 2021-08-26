@@ -17,7 +17,7 @@ public class MemberPagingService implements UService{
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("session_id") == null || session.getAttribute("session_id").equals("")
-				|| session.getAttribute("dept") == null) {
+				|| session.getAttribute("admin") == null) {
 			try {
 				RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
 				rd.forward(request, response);

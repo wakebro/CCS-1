@@ -1,5 +1,6 @@
 package com.sjh.service;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,6 +54,8 @@ public class MemberLoginService implements IMemberService{
 			if(userInfo.getDept_no()==1000) {
 				session.setAttribute("admin", userInfo.getDept());
 			}
+			System.out.println(userInfo);
+			
 			// 세션 생성
 			session.setAttribute("session_id", userInfo.getM_Id());
 			session.setAttribute("userInfo", userInfo);

@@ -26,7 +26,7 @@ CREATE TABLE commute (
     m_no int NOT NULL PRIMARY KEY,
     m_name VARCHAR(5) NOT NULL,
     clock_out_time VARCHAR(20),
-     clock_in_time VARCHAR(20),
+	clock_in_time VARCHAR(20),
     FOREIGN KEY(m_no) REFERENCES member(m_no)
 );
 INSERT INTO commute (m_name, clock_out_time, clock_in_time) VALUES('기하', '20210823193018', '20210823191906');

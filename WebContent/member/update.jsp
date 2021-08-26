@@ -7,65 +7,145 @@
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
 </head>
+<style>
+	*{font: 15px "굴림", Gulim;}
+	header{
+		padding-top: 20px;
+	}
+	#username{
+		font-weight: bolder;
+		font-size: 500% ;
+	}
+	.body{
+		height: 100vh;
+		background-color: rgb(235, 232, 232);
+	}
+	.sider {
+		height:200px;
+	}
+	.header-hr{
+		margin-top: 0;
+	}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <body>
-	<div class="header">
-		<h1>로그인이 완료되었습니다.</h1>
-		<div class="logo">
-			<div id="logo_hello"><h1>${userInfo.m_Name }님, 환영합니다.</h1></div>
-			<div id="logout"><a href="/ccs/logout.do">로그아웃</a></div>
+	<div class="container">
+		<header>
+			<div class="row">
+				<div class="col-md-2">
+					<img src="${logo }">
+				</div>
+				<div class="col-md-10">
+					<span id="username">${userInfo.m_Name }</span>
+					${userInfo.dept }
+					<a href="/ccs/logout.do">로그아웃</a>
+				</div>
+			</div>
+		</header>
+		<hr class="header-hr">
+		<div class="body">
+			<div class="row">
+				<div class="sider btn-group-vertical col-md-2">
+					<a href="/ccs/commute.do" class="btn btn-success" role="button">메인화면</a>
+					<a href="/ccs/board.do?page=1" class="btn btn-success" role="button">게시판</a>
+					<a href="/ccs/userinfo.do" class="btn btn-success" role="button">My Page</a>
+					<a href="/ccs/approval.do" class="btn btn-success" role="button">결제창</a>
+					<c:set var="dept" value="${admin }"></c:set>
+					<c:if test="${dept eq '관리자' }">
+						<a href="/ccs/admin.do" class="btn btn-success" role="button">관리자</a>
+					</c:if>
+				</div>
+				<div class="col-md-10">
+					<div class="row">
+						<div class="col-md-12">
+							<h2 style="font-weight: bolder">회원정보 수정</h2>
+						</div>
+						<div class="col-md-12">
+							<hr>
+						</div>
+						<br>
+						<br>
+						<form action="/ccs/update_proc.do" method="post">
+							<div class="row">
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">이름</span>
+											</div>
+											<input type="text" name="update_name" value= ${userInfo.m_Name } class="form-control col-md-4" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">사번</span>
+											</div>
+											<input type="text" name="update_no" value= ${userInfo.m_No } class="form-control col-md-8" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">아이디</span>
+											</div>
+											<input type="text" name="update_id" value= ${userInfo.m_Id } class="form-control col-md-8" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">비밀번호</span>
+											</div>
+											<input type="text" name="update_pw" class="form-control col-md-8">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">부서</span>
+											</div>
+											<input type="hidden" name="update_dept" value="${userInfo.dept_no}">
+											<input type="text" value= ${userInfo.dept } class="form-control col-md-8" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">전화번호</span>
+											</div>
+											<input type="text" name="update_phone"  class="form-control col-md-8" value="${userInfo.m_Phone }">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">Email</span>
+											</div>
+											<input type="text" name="update_email"  class="form-control col-md-4" value="${userInfo.m_Email }">
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+							<input class="col-md-2 offset-md-4 btn btn-outline-success" type="submit" value="확인">
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="body">
-		<div class="sider">
-			<a href="/ccs/commute.do"><input type="submit" value="메인화면"></a>
-			<a href="/ccs/board.do?page=1"><input type="submit" value="게시판"></a>
-			<a href="/ccs/userinfo.do"><input type="submit" value="내 정보"></a>
-			<a href="/ccs/approval.do"><input type="submit" value="결재창"></a>
-			<c:set var="dept" value="${admin }"></c:set>
-			<c:if test="${dept eq '관리자' }">
-				<a href="/ccs/admin.do"><input type="submit" value="관리자창"></a>
-			</c:if>
-		</div>
-	</div>
-	<h2>회원정보 수정</h2>
-	<br>
-	<form action="/ccs/update_proc.do" method="post">
-	<table border="1">
-		<tr>
-			<th>이름</th>
-			<td><input type="text" name="update_name" value= ${userInfo.m_Name } readonly="readonly"></td>
-		</tr>
-		<tr>
-			<th>사번</th>
-			<td><input type="text" name="update_no" value= ${userInfo.m_No } readonly="readonly"></td>
-		</tr>
-		<tr>
-			<th>아이디</th>
-			<td><input type="text" name="update_id" value= ${userInfo.m_Id } readonly="readonly"></td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td><input type="password" name="update_pw"></td>
-		</tr>
-		<tr>
-			<th>부서</th>
-			<td><input type="hidden" name="update_dept" value="${userInfo.dept_no}">
-				<input type="text" value="${userInfo.dept}" readonly="readonly">
-			</td>
-			
-		</tr>
-		<tr>
-			<th>전화번호</th>
-			<td><input type="text" name="update_phone" value="${userInfo.m_Phone }"></td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td><input type="text" name="update_email" value="${userInfo.m_Email }"></td>
-		</tr>
-		<tr>
-			<td colspan="2" ><input type="submit" value="확인" style="width: 100%">
-		</tr>
-	</table>
-	</form>
 </body>
 </html>

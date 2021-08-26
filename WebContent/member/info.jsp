@@ -7,53 +7,133 @@
 <meta charset="UTF-8">
 <title>내 정보</title>
 </head>
+<style>
+	*{font: 15px "굴림", Gulim;}
+	header{
+		padding-top: 20px;
+	}
+	#username{
+		font-weight: bolder;
+		font-size: 500% ;
+	}
+	.body{
+		height: 100vh;
+		background-color: rgb(235, 232, 232);
+	}
+	.sider {
+		height:200px;
+	}
+	.header-hr{
+		margin-top: 0;
+	}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <body>
-	<div class="header">
-		<h1>로그인이 완료되었습니다.</h1>
-		<div class="logo">
-			<div id="logo_hello"><h1>${userInfo.m_Name }님, 환영합니다.</h1></div>
-			<div id="logout"><a href="/ccs/logout.do">로그아웃</a></div>
+	<div class="container">
+		<header>
+			<div class="row">
+				<div class="col-md-2">
+					<img src="${logo }">
+				</div>
+				<div class="col-md-10">
+					<span id="username">${userInfo.m_Name }</span>
+					${userInfo.dept }
+					<a href="/ccs/logout.do">로그아웃</a>
+				</div>
+			</div>
+		</header>
+		<hr class="header-hr">
+		<div class="body">
+			<div class="row">
+				<div class="sider btn-group-vertical col-md-2">
+					<a href="/ccs/commute.do" class="btn btn-success" role="button">메인화면</a>
+					<a href="/ccs/board.do?page=1" class="btn btn-success" role="button">게시판</a>
+					<a href="/ccs/userinfo.do" class="btn btn-success" role="button">My Page</a>
+					<a href="/ccs/approval.do" class="btn btn-success" role="button">결제창</a>
+					<c:set var="dept" value="${admin }"></c:set>
+					<c:if test="${dept eq '관리자' }">
+						<a href="/ccs/admin.do" class="btn btn-success" role="button">관리자</a>
+					</c:if>
+				</div>
+				<div class="col-md-10">
+					<div class="row">
+						<div class="col-md-12">
+							<h2 style="font-weight: bolder">회원정보 창</h2>
+						</div>
+						<div class="col-md-12">
+							<hr>
+						</div>
+						<br>
+						<br>
+						<div class="col-md-12">
+							<div class="row">
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">이름</span>
+											</div>
+											<input type="text" value= ${userInfo.m_Name } class="form-control col-md-4" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">사번</span>
+											</div>
+											<input type="text" value= ${userInfo.m_No } class="form-control col-md-8" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">아이디</span>
+											</div>
+											<input type="text" value= ${userInfo.m_Id } class="form-control col-md-8" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">부서</span>
+											</div>
+											<input type="text" value= ${userInfo.dept } class="form-control col-md-8" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">전화번호</span>
+											</div>
+											<input type="text" class="form-control col-md-8" value="${userInfo.m_Phone }"readonly>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-md-2">
+										<div class="input-group">
+											<div class="input-group-prepend col-md-3">
+												<span class="input-group-text">Email</span>
+											</div>
+											<input type="text" class="form-control col-md-4" value="${userInfo.m_Email }"readonly>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a href="/ccs/update.do" class="col-md-2 offset-md-4 btn btn-outline-success">회원정보 수정</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="body">
-		<div class="sider">
-			<a href="/ccs/commute.do"><input type="submit" value="메인화면"></a>
-			<a href="/ccs/board.do?page=1"><input type="submit" value="게시판"></a>
-			<a href="/ccs/userinfo.do"><input type="submit" value="내 정보"></a>
-			<a href="/ccs/approval.do"><input type="submit" value="결재창"></a>
-			<c:set var="dept" value="${admin }"></c:set>
-			<c:if test="${dept eq '관리자' }">
-				<a href="/ccs/admin.do"><input type="submit" value="관리자창"></a>
-			</c:if>
-		</div>
-	</div>
-	<hr>
-	<h2>회원정보 창</h2>
-	<table border="1">
-		<tr>
-			<th>이름</th>
-			<td>${userInfo.m_Name }</td>
-		</tr>
-		<tr>
-			<th>사번</th>
-			<td>${userInfo.m_No }</td>
-		</tr>
-		<tr>
-			<th>부서</th>
-			<td>${userInfo.dept }</td>
-		</tr>
-		<tr>
-			<th>전화번호</th>
-			<td>${userInfo.m_Phone }</td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td>${userInfo.m_Email }</td>
-		</tr>
-		<tr>
-			<td colspan="2" ><a href="/ccs/update.do"><input type="submit" value="회원정보 수정" style="width: 100%"></a>
-		</tr>
-		
-	</table>
 </body>
 </html>

@@ -11,7 +11,7 @@ public class CheckAdminSessionService implements UService{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("session_id") == null || session.getAttribute("session_id").equals("") 
-				|| session.getAttribute("dept") == null){
+				|| session.getAttribute("admin") == null){
 			session.invalidate();
 			try {
 				RequestDispatcher rd = request.getRequestDispatcher("/member/member_login_form.jsp");
