@@ -8,7 +8,21 @@
 	rel="stylesheet" 
 	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" 
 	crossorigin="anonymous">
+
+	
 <style type="text/css">
+li{
+	list-style-type: none;
+}
+.side {
+	width: 150px;
+	height: 300px;
+	background: slategrey;
+    top: 100px;
+}
+#logout{
+	
+}
 $container-max-widths: (
   sm: 540px,
   md: 720px,
@@ -22,55 +36,62 @@ $container-max-widths: (
 <title>출근</title>
 </head>
 <body>
+<div class="container">
 	<div class="header">
 	<h1>로그인이 완료되었습니다.</h1>
 		<div class="logo">
 			<div id="logo_hello"><h1>${userInfo.m_Name }님, 환영합니다.</h1></div>
-			<div id="logout"><a href="/ccs/logout.do">로그아웃</a></div>
+			<div id="logout"><button type="button" class="btn btn-outline-secondary position-absolute top-0 end-0" onclick="location.href='/ccs/logout.do'">로그아웃</button></div>
 		</div>
 	</div>
 	<div class="body">
 		<div class="sider">
-			<a href="/ccs/commute.do"><input type="submit" value="메인화면"></a>
-			<a href="/ccs/board.do?page=1"><input type="submit" value="게시판"></a>
-			<a href="/ccs/userinfo.do"><input type="submit" value="내 정보"></a>
-			<a href="/ccs/approval.do"><input type="submit" value="결재창"></a>
+			<a href="/ccs/commute.do"><input type="submit" class="btn btn-outline-secondary" value="메인화면"></a>
+			<a href="/ccs/board.do?page=1"><input type="submit" class="btn btn-outline-secondary" value="게시판"></a>
+			<a href="/ccs/userinfo.do"><input type="submit" class="btn btn-outline-secondary" value="내 정보"></a>
+			<a href="/ccs/approval.do"><input type="submit" class="btn btn-outline-secondary" value="결재창"></a>
 			<c:set var="dept" value="${admin }"></c:set>
 			<c:if test="${dept eq '관리자' }">
-				<a href="/ccs/admin.do"><input type="submit" value="관리자창"></a>
+				<a href="/ccs/admin.do"><input type="submit" class="btn btn-secondary" value="관리자창"></a>
 			</c:if>
 		</div>
 	</div>
-	<div class="container-fluid">
-	<h2>출근시 입력창</h2>
+</div>
 
-	<form action="/ccs/doCommute.do" method="post">
-		<div style="border: 1px solid; width: 1485px; height: 100%;">
-			<table style="width: 100%; padding:10% 35%; ">
+<div class="container p-3 mb-2 bg-light text-dark"">
+<div class="row">
+	<div class="side col-4 p-4 mb-2 bg-secondary text-white lh-lg">
+		<ul>
+			<li>메인</li>
+			<li>메인</li>
+			<li>메인</li>
+			<li>메인</li>
+		</ul>
+	</div>
+	
+        
+	
+	<div class="col-8 ">
+	<h2>출근시 입력창</h2>
+		<form action="/ccs/doCommute.do" method="post">
+		<div style="border: 1px solid; width: 100%; height: 100%;">
 				<input type="hidden" id="inTime" name="inTime" value="${inOutVO.getClock_in_time()}">
-				<tr>	
-					<td>이름 / 부서 : ${userInfo.m_Name } / ${userInfo.dept }
-				</tr>
-				<tr>
-				</tr>
-				<tr>
-					<td>오늘의 출근시간 : ${inOutVO.getClock_in_time()}</td>
-				</tr>
-				<tr>
-					<td>오늘의 퇴근시간 : ${inOutVO.getClock_out_time()}</td>
-				</tr>
-				<tr style="height: 100px;">
-					<td>
+					<div class="text-center">
+						이름 / 부서 : ${userInfo.m_Name } / ${userInfo.dept }</div>
+				
+					<div class="text-center">오늘의 출근시간 : ${inOutVO.getClock_in_time()}</div>
+					<div class="text-center">오늘의 퇴근시간 : ${inOutVO.getClock_out_time()}</div>
+				<div style="height: 100px;">
+					<div class="text-center">
 						<c:if test="${empty inOutVO.clock_in_time}">
-							<input type="submit" value="출근하기"> 
+							<input type="submit" class="btn btn-secondary" value="출근하기"> 
 						</c:if>
 						<c:if test="${not empty inOutVO.clock_in_time && empty inOutVO.clock_out_time}">
-							<input type="submit" value="퇴근하기">
+							<input type="submit" class="btn btn-secondary" value="퇴근하기">
 						</c:if>
-					</td>
-				</tr>
-			</table>
-		</div>
+				</div>
+				</div>
+				</div>
 		
 	<!-- 출결목록 -->
 		<table class="table table-striped">
@@ -105,8 +126,6 @@ $container-max-widths: (
 		</a>
 	</c:if>
 	
-	
-	
 <!-- 페이지 번호 5개 묶음을 깔아주는 부분 -->
 	<c:forEach var="pNo" begin="${inOutDTO.startPage}" end="${inOutDTO.endPage}">
 		<li class="page-item"><a class="page-link" href="/ccs/commute.do?page=${pNo}" >${pNo }</a></li>
@@ -127,6 +146,9 @@ $container-max-widths: (
 <!-- 페이징 부분 끝 -->
 			
 	</form>
+	
+	</div>
+	</div>
 	</div>
 </body>
 </html>

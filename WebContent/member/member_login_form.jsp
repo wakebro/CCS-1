@@ -67,7 +67,6 @@ der .c_logo:before{
 	</h1>
 </header>
 <div class="row">
-<div class="col-4 sidebar">side</div>
 	<form action="/ccs/login.do" method="post">
 	<div class="col-8">
 			<div class="row">

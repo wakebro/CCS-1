@@ -36,7 +36,8 @@ public class MemberLoginService implements IMemberService{
 			user.setM_Id(m_id);
 			user.setM_Pw(m_pw);
 			userInfo = dao.login(user);
-			userInfo.setDept(uDao.getUserDept(userInfo.getDept_no()));
+			// userInfo.setDept(uDao.getUserDept(userInfo.getDept_no()));
+			userInfo.setDept("125");
 			String userDept = user.getDept();
 			
 			// 로그인
