@@ -1,6 +1,34 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+=======
+<%@page import="com.hgs.dept.model.DeptVO"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+/*
+	request.setCharacterEncoding("utf-8");
+	response.setCharacterEncoding("utf-8");
+	
+	String m_name = request.getParameter("m_name");
+	String m_id = request.getParameter("m_id");
+	String m_pw = request.getParameter("m_pw");
+	Integer dept_no = (Integer)session.getAttribute("dept_no");
+	String m_phone = request.getParameter("m_phone");
+	String m_email = request.getParameter("m_email");
+	
+	MembersDAO dao = MembersDAO.getinstance();
+	
+	MembersVO member = new MembersVO();
+	
+	
+	dao.joinMember(member);
+	dao.getMemberDept(1);
+	*/
+%>
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,6 +94,7 @@ function idCheck(){
 			<td><input type="text" name="m_name" placeholder="이름"><br/></td>
 		</tr>
 		<tr>
+<<<<<<< HEAD
 			<th>부서</th>
 			<td>
 				<select name="dept_no" style="width: 100%">
@@ -73,6 +102,14 @@ function idCheck(){
 					<option value=${dept.dept_no }>${dept.dept_name}</option>
 				</c:forEach></select>
 			</td>
+=======
+			<td>사원번호:</td>
+			<td><input type="text" name="m_no" id="m_no" placeholder="사번" maxlength=8 required><br/></td>
+		</tr>
+		<tr>
+			<td>부서번호:</td>
+			<td><input type="text" name="dept_no" id="dept_no" placeholder="부서명" maxlength=6><br/></td>
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 		</tr>
 		<tr>
 			<td>핸드폰번호:</td>

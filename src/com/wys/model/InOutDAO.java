@@ -3,6 +3,10 @@ package com.wys.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+<<<<<<< HEAD
+=======
+import java.sql.Statement;
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +92,7 @@ public class InOutDAO {
 		}
 		return commuteList;
 	}
+<<<<<<< HEAD
 	// 모든 출퇴근 정보를 DB로부터 받아올 메서드
 		public List<InOutVO> getCommuteList(InOutVO inOutVO, int pageNum){
 			List<InOutVO> commuteList = new ArrayList<InOutVO>();
@@ -140,6 +145,9 @@ public class InOutDAO {
 			}
 			return commuteList;
 		}
+=======
+	
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 
 	
 	// START clockIn (출근시간 입력)

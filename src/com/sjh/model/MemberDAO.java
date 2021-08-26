@@ -10,6 +10,10 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 public class MemberDAO {
 	private DataSource ds;
 
@@ -29,16 +33,28 @@ public class MemberDAO {
 		}
 		return dao;
 	}
+<<<<<<< HEAD
 	
 	// 회원가입 호직
 	public void joinMember(MemberVO member) {
+=======
+	// 회원가입 호직
+	public void joinMember(MemberVO member) {
+		// DB������ ���� Connector ����
+		// Connection ��ü ����
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
 
+<<<<<<< HEAD
 			String sql = "INSERT INTO member(m_id, m_pw, m_name, dept_no, m_phone, m_email)"
 					+ "VALUES(?, ?, ?, ?, ?, ?)";
+=======
+			String sql = "INSERT INTO (m_id,m_pw,m_name,dept_no,m_phone,m_email)"
+					+ "VALUES(?,?,?,?,?,?)";
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member.getM_Id());
@@ -131,6 +147,7 @@ public class MemberDAO {
 	return 0;
 	} // end DeleteMember
 	// 사원 로그인
+<<<<<<< HEAD
 	public MemberVO login(MemberVO user) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -154,6 +171,28 @@ public class MemberDAO {
 					userInfo.setDept_no(rs.getInt("dept_no"));
 					userInfo.setM_Phone(rs.getString("m_phone"));
 					userInfo.setM_Email(rs.getString("m_email"));
+=======
+	public int login(String m_id, String m_pw) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		MemberVO userinfo = new MemberVO();
+
+		String sql = "SELECT m_pw FROM member WHERE m_id=?";
+		try {
+			con = ds.getConnection();
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			userinfo.getM_Name();
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(m_pw)) {
+					return 1;
+				}else {
+					return 0;
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 				}
 			}
 		}catch(Exception e) {
@@ -173,7 +212,11 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
+<<<<<<< HEAD
 		return userInfo;
+=======
+		return 0;
+>>>>>>> d291b6be71761378553e80bc11b202550cf4e4c2
 	}// end login
 	// 수정 로직 사용하기 전 수정할 타겟 아이디 정보 얻어오기.
 	public MemberVO getMemberInfo(MemberVO member) {
