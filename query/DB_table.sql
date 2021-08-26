@@ -1,4 +1,4 @@
-CREATE DATABASE ccs;
+CREATE DATABASE ccs default character set utf8;
 
 USE ccs;
 

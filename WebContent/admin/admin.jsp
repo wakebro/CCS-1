@@ -13,8 +13,10 @@
 		padding-top: 20px;
 	}
 	#username{
+		display : flex;
+		
 		font-weight: bolder;
-		font-size: 500% ;
+		font-size: 400% ;
 	}
 	.body{
 		height: 100vh;
@@ -33,7 +35,9 @@
 		<header>
 			<div class="row">
 				<div class="col-md-2">
-					<img src="${logo }">
+					<div class="row">
+						<img src="../img/logo.png" onerror="this.src='../ccs/img/logo.png'">
+					</div>
 				</div>
 				<div class="col-md-10">
 					<span id="username">${userInfo.m_Name }</span>

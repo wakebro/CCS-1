@@ -11,22 +11,20 @@
 <br>
 
 ## 2) 사용 기술
-+ Java
-+ MySQL
++ Java 8
++ JSP
++ MySQL 8.0
++ Bootstrap 5.1.0
 
 <br>
 
 ## 3) ERD 설계
+![CCS_ERD](/img/CCS_ERD.jpg)
+<br>
++ 다이어그램
+![CCS_Diagram](/img/CCS_Diagram.png)
 
 <br>
 
 ## 4) 핵심 기능
 
-<br>
-
-## 5) 트러블 슈팅
-
-<br>
-
-## 6) 회고 / 느낀 점
-> 프로젝트 개발 회고 글 : 
