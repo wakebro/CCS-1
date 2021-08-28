@@ -90,7 +90,7 @@
 						<br>
 						<div>
 							<div class="col-md-12">
-								<button class="btn btn-success" onclick="location.href='http://localhost:8181/ccs/board/board_write.jsp'">글쓰기</button>
+								<button class="btn btn-success" onclick="location.href='/ccs/board/board_write.jsp'">글쓰기</button>
 							</div>
 						</div>
 						<br>
