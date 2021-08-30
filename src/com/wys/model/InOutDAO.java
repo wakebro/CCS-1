@@ -317,12 +317,6 @@ public class InOutDAO {
 		}// END clockOut
 		
 		
-		
-		
-		
-	
-	
-	
 
 	// start List<InOutVO> (페이징로직) 
 	public List<InOutVO>getPageList(int pageNum) {
@@ -373,19 +367,19 @@ public class InOutDAO {
 	
 	
 	// start 페이지 합산
-	public int getCommuteListCount() {
+	public int getCommuteListCount(InOutVO inOutVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT count(*) FROM commute";
+		String sql = "SELECT count(*) FROM commute WHERE m_no=?";
 		
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			
-			//pstmt.setInt(1, inOutVO.getM_no());
+			pstmt.setInt(1, inOutVO.getM_no());
 			
 			
 			rs = pstmt.executeQuery();

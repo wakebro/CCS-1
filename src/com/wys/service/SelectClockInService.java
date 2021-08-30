@@ -46,7 +46,7 @@ public class SelectClockInService implements InOutService{
 				
 				// 출퇴근 목록 조회
 				List<InOutVO> commuteList = dao.getCommuteList(inOutVO, (page - 1) * 5);
-				int commuteListCount = dao.getCommuteListCount();
+				int commuteListCount = dao.getCommuteListCount(inOutVO);
 				
 				InOutDTO inOutDTO = new InOutDTO(commuteListCount, page, commuteList);
 				
