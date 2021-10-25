@@ -141,5 +141,6 @@ function check_pw(){
 <br>
 
 ### 4-4) 결재창 / 관리자 페이지
-
+![결재승인](https://user-images.githubusercontent.com/45350620/138652435-a6f0d9c3-9d9f-4762-8748-64b4ee50746d.png)
+![결재승인2](https://user-images.githubusercontent.com/45350620/138652482-7ed43a97-561a-4fa8-a792-3a471b5e42ec.png)
 사원은 휴가, 반차, 월차, 연차에 대한 결제 요청을 남길 수 있다. 관리자는 관리자 페이지를 통해 결재에 대한 승인, 비승인 여부를 결정할 수 있다. 그리고 관리자 페이지에서는 직원 목록과 결제서류 현황을 조회할 수 있다. 
